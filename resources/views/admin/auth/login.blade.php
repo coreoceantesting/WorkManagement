@@ -123,11 +123,11 @@
                         <img src="{{ asset('admin/images/banner.jpg') }}" style="width: 100%" alt="">
                     </div>
                     <div class="col-lg-6 col-md-6 col-12 mobile-view-bgcolor">
-                        <div class="d-flex justify-content-center mt-3">
-                            <img src="{{ asset('admin/images/PMC LOGO.png') }}" style="width: 30%;">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="{{ asset('admin/images/PMC LOGO.png') }}" style="width: 24%;">
                         </div>
                         <div class="text-center mt-3">
-                            <h3><b>Work Management System</b></h3>
+                            <h4><b>Work Management System</b></h4>
                         </div>
                         <div class="text-center mt-3">
                             <h5>लॉगिन मध्ये आपले स्वागत आहे </h5>
@@ -135,6 +135,19 @@
                         <div class="container custompadding">
                             <form id="loginForm">
                                 @csrf
+
+                                <div class="mb-3">
+                                    <label for="financial_year" class="form-label">Financial Year(आर्थिक वर्ष)</label>
+                                    <select name="financial_year" id="financial_year" class="form-control">
+                                        <option class="bg-overlay" value="">Select Financial Year</option>
+                                        @foreach ($financialYear as $row)
+                                            <option class="bg-overlay" value="{{ $row->id }}" {{ old('financial_year') == $row->id }}>{{ $row->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid financial_year_err"></span>
+                                </div>
+
+
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username (वापरकर्तानाव)</label>
                                     <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">

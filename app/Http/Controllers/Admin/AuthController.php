@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Inspiring;
+use App\Models\FinancialYear;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,9 @@ class AuthController extends Controller
             array_push($quotes, Inspiring::quote());
         }
 
-        return view('admin.auth.login')->with(['quotes' => $quotes]);
+        $financialYear = FinancialYear::where('is_active', '1')->latest()->get();
+
+        return view('admin.auth.login')->with(['quotes' => $quotes, 'financialYear' => $financialYear]);
     }
 
     public function login(Request $request)
@@ -30,10 +33,12 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
+            'financial_year' => 'required',
         ],
         [
             'username.required' => 'Please enter username',
             'password.required' => 'Please enter password',
+            'financial_year.required' => 'Please select financial year',
         ]);
 
         if ($validator->passes())
@@ -41,6 +46,7 @@ class AuthController extends Controller
             $username = $request->username;
             $password = $request->password;
             $remember_me = $request->has('remember_me') ? true : false;
+            $financialYear = FinancialYear::where('id', $request->financial_year)->latest()->first();
 
             try
             {
@@ -54,6 +60,10 @@ class AuthController extends Controller
 
                 if(!auth()->attempt(['email' => $username, 'password' => $password], $remember_me))
                     return response()->json(['error2'=> 'Your entered credentials are invalid']);
+
+                session(['financial_year' => $request->financial_year]);
+                session(['financial_year_title' => $financialYear->title]);
+
 
                 $userType = '';
                 if( $user->hasRole(['User']) )
