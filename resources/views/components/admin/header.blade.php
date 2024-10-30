@@ -33,7 +33,7 @@
 
                 <!-- App Search-->
                 <form class="app-search d-none d-md-block">
-                    <div class="position-relative">
+                    <div class="position-relative d-none">
                         <input type="text" class="form-control" placeholder="Search..." autocomplete="off" id="search-options" value="" />
                         <span class="mdi mdi-magnify search-widget-icon"></span>
                         <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="ms-1 header-item d-none d-sm-flex">
-                    <button type="button" id="change-theme-button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode">
+                    <button type="button" id="change-theme-button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode d-none">
                         <i class="bx bx-moon fs-22"></i>
                     </button>
                 </div>
@@ -181,9 +181,9 @@
                         <h6 class="dropdown-header">
                             Welcome {{ ucfirst(auth()->user()->name) }}!
                         </h6>
-                        <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
+                        {{-- <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">Profile</span>
-                        </a>
+                        </a> --}}
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle" data-key="t-logout">Logout</span>
