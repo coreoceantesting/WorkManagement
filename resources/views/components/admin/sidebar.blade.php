@@ -33,52 +33,52 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('dashboard') }}" >
+                    <a class="nav-link menu-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}" >
                         <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards">Dashboard</span>
                     </a>
                 </li>
 
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#dashboard" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="ri-layout-3-line"></i>
-                        <span data-key="t-layouts">Masters</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="dashboard">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('financial_year.index') }}" class="nav-link" data-key="t-horizontal">Financial Years</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
+                @can('masters.all')
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index')  ? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-layout-3-line"></i>
+                            <span data-key="t-layouts">Masters</span>
+                        </a>
+                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index')  ? 'show' : '' }}" id="masters">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('wards.index') }}" class="nav-link {{ request()->routeIs('wards.index') ? 'active' : '' }}" data-key="t-horizontal">Wards</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('financial_year.index') }}" class="nav-link {{ request()->routeIs('financial_year.index') ? 'active' : '' }}" data-key="t-horizontal">Financial Years</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
 
                 @canany(['users.view', 'roles.view'])
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#usermanagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="bx bx-user-circle"></i>
-                        <span data-key="t-layouts">User Management</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="usermanagement">
-                        <ul class="nav nav-sm flex-column">
-                            @can('users.view')
-                                <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link" data-key="t-horizontal">Users</a>
-                                </li>
-                            @endcan
-                            @can('roles.view')
-                                <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}" class="nav-link" data-key="t-horizontal">Roles</a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </div>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ request()->routeIs('users.index') || request()->routeIs('roles.index')  ? 'active' : 'collapsed' }}" href="#usermanagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="bx bx-user-circle"></i>
+                            <span data-key="t-layouts">User Management</span>
+                        </a>
+                        <div class="collapse menu-dropdown {{ request()->routeIs('users.index') || request()->routeIs('roles.index')  ? 'show' : '' }}" id="usermanagement">
+                            <ul class="nav nav-sm flex-column">
+                                @can('users.view')
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}" data-key="t-horizontal">Users</a>
+                                    </li>
+                                @endcan
+                                @can('roles.view')
+                                    <li class="nav-item">
+                                        <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" data-key="t-horizontal">Roles</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
                 @endcan
 
             </ul>

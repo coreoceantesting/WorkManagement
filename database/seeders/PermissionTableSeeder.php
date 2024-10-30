@@ -76,41 +76,46 @@ class PermissionTableSeeder extends Seeder
             ],
             [
                 'id' => 13,
+                'name' => 'masters.all',
+                'group' => 'masters',
+            ],
+            [
+                'id' => 14,
                 'name' => 'wards.view',
                 'group' => 'wards',
             ],
             [
-                'id' => 14,
+                'id' => 15,
                 'name' => 'wards.create',
                 'group' => 'wards',
             ],
             [
-                'id' => 15,
+                'id' => 16,
                 'name' => 'wards.edit',
                 'group' => 'wards',
             ],
             [
-                'id' => 16,
+                'id' => 17,
                 'name' => 'wards.delete',
                 'group' => 'wards',
             ],
             [
-                'id' => 17,
+                'id' => 18,
                 'name' => 'financial_year.view',
                 'group' => 'financial_year',
             ],
             [
-                'id' => 18,
+                'id' => 19,
                 'name' => 'financial_year.create',
                 'group' => 'financial_year',
             ],
             [
-                'id' => 19,
+                'id' => 20,
                 'name' => 'financial_year.edit',
                 'group' => 'financial_year',
             ],
             [
-                'id' => 20,
+                'id' => 21,
                 'name' => 'financial_year.delete',
                 'group' => 'financial_year',
             ],
