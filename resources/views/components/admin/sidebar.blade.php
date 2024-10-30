@@ -41,11 +41,11 @@
 
                 @can('masters.all')
                     <li class="nav-item">
-                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index')  ? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index')  ? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-layout-3-line"></i>
                             <span data-key="t-layouts">Masters</span>
                         </a>
-                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index')  ? 'show' : '' }}" id="masters">
+                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index')  ? 'show' : '' }}" id="masters">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('wards.index') }}" class="nav-link {{ request()->routeIs('wards.index') ? 'active' : '' }}" data-key="t-horizontal">Wards</a>
@@ -55,6 +55,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('source_of_fund.index') }}" class="nav-link {{ request()->routeIs('source_of_fund.index') ? 'active' : '' }}" data-key="t-horizontal">Source Of Fund</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('schemes.index') }}" class="nav-link {{ request()->routeIs('schemes.index') ? 'active' : '' }}" data-key="t-horizontal">Schemes</a>
                                 </li>
                             </ul>
                         </div>

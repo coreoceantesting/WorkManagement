@@ -48,6 +48,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('wards', App\Http\Controllers\Admin\Masters\WardController::class);
     Route::resource('financial_year', App\Http\Controllers\Admin\Masters\FinancialYearController::class);
     Route::resource('source_of_fund', App\Http\Controllers\Admin\Masters\SourceOfFundController::class);
+    Route::resource('schemes', App\Http\Controllers\Admin\Masters\SchemesController::class);
 
 
 
