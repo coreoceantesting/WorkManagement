@@ -94,6 +94,27 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'wards.delete',
                 'group' => 'wards',
             ],
+            [
+                'id' => 17,
+                'name' => 'financial_year.view',
+                'group' => 'financial_year',
+            ],
+            [
+                'id' => 18,
+                'name' => 'financial_year.create',
+                'group' => 'financial_year',
+            ],
+            [
+                'id' => 19,
+                'name' => 'financial_year.edit',
+                'group' => 'financial_year',
+            ],
+            [
+                'id' => 20,
+                'name' => 'financial_year.delete',
+                'group' => 'financial_year',
+            ],
+
         ];
 
         foreach ($permissions as $permission)

@@ -50,6 +50,9 @@
                             <li class="nav-item">
                                 <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('financial_year.index') }}" class="nav-link" data-key="t-horizontal">Financial Years</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
