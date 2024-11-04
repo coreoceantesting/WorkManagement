@@ -52,7 +52,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('locations', App\Http\Controllers\Admin\Masters\LocationsController::class);
     Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentsController::class);
     Route::resource('designation', App\Http\Controllers\Admin\Masters\DesignationController::class);
-
+    Route::resource('contractor', App\Http\Controllers\Admin\Masters\ContractorController::class);
 
 
 
