@@ -50,6 +50,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('source_of_fund', App\Http\Controllers\Admin\Masters\SourceOfFundController::class);
     Route::resource('schemes', App\Http\Controllers\Admin\Masters\SchemesController::class);
     Route::resource('locations', App\Http\Controllers\Admin\Masters\LocationsController::class);
+    Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentsController::class);
 
 
 
