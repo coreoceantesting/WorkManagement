@@ -141,7 +141,11 @@
                                         <td>{{ $financial_year->from_date }}</td>
                                         <td>{{ $financial_year->to_date }}</td>
                                         <td>{{ $financial_year->title }}</td>
-                                        <td>{{ $financial_year->is_active == 1 ? 'Active' : 'Inactive' }}</td>
+                                        <td>
+                                            <span class="badge" style="{{ $financial_year->is_active == 1 ? 'color:green' : 'color:red' }}" >
+                                                {{ $financial_year->is_active == 1 ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </td>
                                         <td>
                                             @can('financial_year.edit')
                                                 <button class="edit-element btn btn-secondary px-2 py-1" title="Edit Financial Year" data-id="{{ $financial_year->id }}"><i data-feather="edit"></i></button>

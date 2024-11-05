@@ -38,6 +38,22 @@
                             </div>
 
                             <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="gender">Gender <span class="text-danger">*</span></label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <span class="text-danger is-invalid gender_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="birthdate">Date Of Birth <span class="text-danger">*</span></label>
+                                <input class="form-control" id="birthdate" name="birthdate" type="date">
+                                <span class="text-danger is-invalid birthdate_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
                                 <label class="col-form-label" for="role">Select User Type / Role <span class="text-danger">*</span></label>
                                 <select class="js-example-basic-single col-sm-12" id="role" name="role">
                                     <option value="">--Select Role--</option>
@@ -105,6 +121,22 @@
                                 <input class="form-control" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                                     placeholder="Enter User Mobile">
                                 <span class="text-danger is-invalid mobile_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="gender">Gender <span class="text-danger">*</span></label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <span class="text-danger is-invalid gender_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="birthdate">Date Of Birth <span class="text-danger">*</span></label>
+                                <input class="form-control" id="birthdate" name="birthdate" type="date">
+                                <span class="text-danger is-invalid birthdate_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
@@ -452,6 +484,8 @@
                     $("#editForm input[name='name']").val(data.user.name);
                     $("#editForm input[name='email']").val(data.user.email);
                     $("#editForm input[name='mobile']").val(data.user.mobile);
+                    $("#editForm select[name='gender']").val(data.user.gender);
+                    $("#editForm input[name='birthdate']").val(data.user.birthdate);
                     $("#editForm select[name='ward_id']").html(data.wardHtml);
                 } else {
                     swal("Error!", data.error, "error");
