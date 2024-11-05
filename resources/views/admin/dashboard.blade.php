@@ -54,18 +54,18 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: deepskyblue">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Users
+                                        <p class="fw-medium mb-0">
+                                            New Applications
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="28.05">0</span>k
+                                            <span class="counter-value" data-target="0">0</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
                                                 16.24 %
                                             </span>
@@ -74,7 +74,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="users" class="text-info"></i>
                                             </span>
@@ -88,18 +88,18 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: rgb(63, 201, 153)">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Sessions
+                                        <p class="fw-medium mb-0">
+                                            Pending Applications
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="97.66">0</span>k
+                                            <span class="counter-value" data-target="0">0</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
                                                 3.96 %
@@ -109,7 +109,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="activity" class="text-info"></i>
                                             </span>
@@ -122,23 +122,20 @@
                         <!-- end card-->
                     </div>
                     <!-- end col-->
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: rgb(241, 150, 248)">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Avg. Visit
-                                            Duration
+                                        <p class="fw-medium mb-0">
+                                            Approved Applications
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="3">0</span>m
-                                            <span class="counter-value" data-target="40">0</span>sec
+                                            <span class="counter-value" data-target="0">0</span>
+                                            {{-- <span class="counter-value" data-target="40">0</span>sec --}}
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
                                                 0.24 %
@@ -148,7 +145,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="clock" class="text-info"></i>
                                             </span>
@@ -162,18 +159,18 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: rgb(176, 192, 198)">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Bounce Rate
+                                        <p class="fw-medium mb-0">
+                                            Rejected Applications
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="33.48">0</span>%
+                                            <span class="counter-value" data-target="0">0</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-success mb-0">
                                                 <i class="ri-arrow-up-line align-middle"></i>
                                                 7.05 %
@@ -183,7 +180,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="external-link" class="text-info"></i>
                                             </span>

@@ -64,17 +64,39 @@
                                 <span class="text-danger is-invalid role_err"></span>
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            {{-- <div class="col-md-4 mt-3">
                                 <label class="col-form-label" for="password">Password <span class="text-danger">*</span></label>
                                 <input class="form-control" id="password" name="password" type="password" placeholder="********">
+                                <span class="text-danger is-invalid password_err"></span>
+                            </div> --}}
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="password">Password</label>
+                                <div class="input-group ">
+                                    <input type="password" class="form-control password-input" placeholder="Enter password" id="password" name="password">
+                                    <button class="btn btn-outline-secondary" type="button" id="password-addon">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <span class="text-danger is-invalid password_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="confirm_password">Confirm Password</label>
+                                <div class="input-group ">
+                                    <input type="password" class="form-control confirm_password" placeholder="Enter confirm password" id="confirm_password" name="confirm_password">
+                                    <button class="btn btn-outline-secondary" type="button" id="confirm_password_new">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <span class="text-danger is-invalid confirm_password_err"></span>
+                            </div>
+
+                            {{-- <div class="col-md-4 mt-3">
                                 <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                 <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="********">
                                 <span class="text-danger is-invalid confirm_password_err"></span>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>
@@ -635,5 +657,41 @@
             });
         }
 
+    });
+</script>
+
+{{-- show password --}}
+<script>
+    document.getElementById('password-addon').addEventListener('click', function () {
+        var passwordInput = document.getElementById('password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+
+{{-- show confirm password --}}
+<script>
+    document.getElementById('confirm_password_new').addEventListener('click', function () {
+        var passwordInput = document.getElementById('confirm_password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
     });
 </script>

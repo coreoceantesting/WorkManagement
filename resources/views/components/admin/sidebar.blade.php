@@ -99,6 +99,29 @@
                     </li>
                 @endcan
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#applications" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <i class="bx bx-list-ul"></i>
+                        <span data-key="t-layouts">Applications</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="applications">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-horizontal">New Applications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-horizontal">Pending Applications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-horizontal">Approved Applications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-horizontal">Rejected Applications</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>
