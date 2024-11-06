@@ -24,6 +24,7 @@ class UpdateContractorRequest extends FormRequest
         return [
             'contractor_name' => 'required',
             'company_name' => 'required',
+            'contractor_type' => 'required',
             'email' => 'required|email',
             'contact_no' => 'required|digits:10',
         ];

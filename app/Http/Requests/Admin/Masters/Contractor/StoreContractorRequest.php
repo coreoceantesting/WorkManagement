@@ -24,6 +24,7 @@ class StoreContractorRequest extends FormRequest
         return [
             'contractor_name' => 'required|unique:contractors,contractor_name',
             'company_name' => 'required',
+            'contractor_type' => 'required',
             'email' => 'required|email',
             'contact_no' => 'required|digits:10',
         ];

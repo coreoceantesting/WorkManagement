@@ -22,6 +22,16 @@
                                     <span class="text-danger is-invalid contractor_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label  class="col-form-label" for="contractor_type">Contractor Type <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="contractor_type" id="contractor_type">
+                                        <option value="">Select Contractor Type</option>
+                                        @foreach ($contractorTypeList as $list)
+                                            <option value="{{ $list->id }}">{{ $list->contractor_type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid contractor_type_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="company_name">Company Name <span class="text-danger">*</span></label>
                                     <input class="form-control" id="company_name" name="company_name" type="text" placeholder="Enter Company Name">
                                     <span class="text-danger is-invalid company_name_err"></span>
@@ -66,6 +76,16 @@
                                     <label class="col-form-label" for="contractor_name">Contractor Name <span class="text-danger">*</span></label>
                                     <input class="form-control" id="contractor_name" name="contractor_name" type="text" placeholder="Enter Contractor Name">
                                     <span class="text-danger is-invalid contractor_name_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label  class="col-form-label" for="contractor_type">Contractor Type <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="contractor_type" id="contractor_type">
+                                        <option value="">Select Contractor Type</option>
+                                        @foreach ($contractorTypeList as $list)
+                                            <option value="{{ $list->id }}">{{ $list->contractor_type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid contractor_type_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="company_name">Company Name <span class="text-danger">*</span></label>
@@ -115,6 +135,7 @@
                                     <tr>
                                         <th>Sr No.</th>
                                         <th>Contractor Name</th>
+                                        <th>Contractor Type</th>
                                         <th>Company Name</th>
                                         <th>Email</th>
                                         <th>Contact No</th>
@@ -126,6 +147,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->contractor_name }}</td>
+                                            <td>{{ $list->contractor_type_name }}</td>
                                             <td>{{ $list->company_name }}</td>
                                             <td>{{ $list->email }}</td>
                                             <td>{{ $list->contact_no }}</td>
@@ -212,6 +234,7 @@
                     $("#editForm input[name='company_name']").val(data.contractor.company_name);
                     $("#editForm input[name='email']").val(data.contractor.email);
                     $("#editForm input[name='contact_no']").val(data.contractor.contact_no);
+                    $("#editForm select[name='contractor_type']").val(data.contractor.contractor_type);
                 }
                 else
                 {

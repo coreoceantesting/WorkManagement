@@ -11,7 +11,7 @@ class Contractor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['contractor_name', 'company_name', 'email', 'contact_no'];
+    protected $fillable = ['contractor_name', 'company_name', 'email', 'contact_no', 'contractor_type'];
 
 
     public static function booted()
