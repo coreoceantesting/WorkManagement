@@ -41,11 +41,11 @@
 
                 @can('masters.all')
                     <li class="nav-item">
-                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index')  ? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index') || request()->routeIs('contractor_type.index')  ? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-layout-3-line"></i>
                             <span data-key="t-layouts">Masters</span>
                         </a>
-                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index')  ? 'show' : '' }}" id="masters">
+                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index') || request()->routeIs('contractor_type.index')  ? 'show' : '' }}" id="masters">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('wards.index') }}" class="nav-link {{ request()->routeIs('wards.index') ? 'active' : '' }}" data-key="t-horizontal">Wards</a>
@@ -70,6 +70,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('contractor.index') }}" class="nav-link {{ request()->routeIs('contractor.index') ? 'active' : '' }}" data-key="t-horizontal">Contractors</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('contractor_type.index') }}" class="nav-link {{ request()->routeIs('contractor_type.index') ? 'active' : '' }}" data-key="t-horizontal">Contractor Types</a>
                                 </li>
                             </ul>
                         </div>

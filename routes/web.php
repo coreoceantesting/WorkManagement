@@ -53,6 +53,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentsController::class);
     Route::resource('designation', App\Http\Controllers\Admin\Masters\DesignationController::class);
     Route::resource('contractor', App\Http\Controllers\Admin\Masters\ContractorController::class);
+    Route::resource('contractor_type', App\Http\Controllers\Admin\Masters\ContractorTypesController::class);
 
 
 
