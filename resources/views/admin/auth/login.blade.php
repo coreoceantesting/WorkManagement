@@ -15,7 +15,7 @@
             }
 
             .bg-img{
-                background-image: url('{{ asset('admin/images/Disaster Management System.jpg') }}');
+                background-image: url('{{ asset('admin/images/Work Management System.jpg') }}');
                 background-repeat: no-repeat;
                 background-position: 0%;
                 background-size: cover;
