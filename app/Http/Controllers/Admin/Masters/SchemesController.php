@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Masters\Schemes\StoreSchemeRequest;
 use App\Http\Requests\Admin\Masters\Schemes\UpdateSchemeRequest;
 use App\Models\Scheme;
+use App\Models\SourceOfFund;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SchemesController extends Controller
 {
@@ -18,8 +20,9 @@ class SchemesController extends Controller
     public function index()
     {
         $schemesList = Scheme::latest()->get();
+        $sourceOfFundList = SourceOfFund::latest()->get();
 
-        return view('admin.masters.schemes')->with(['schemesList'=> $schemesList]);
+        return view('admin.masters.schemes')->with(['schemesList'=> $schemesList, 'sourceOfFundList' => $sourceOfFundList]);
     }
 
     /**
@@ -39,6 +42,13 @@ class SchemesController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
+
+            if ($request->hasFile('upload_document')) {
+                $Doc = $request->file('upload_document');
+                $DocPath = $Doc->store('upload_document', 'public');
+                $input['upload_document'] = $DocPath;
+            }
+
             Scheme::create($input);
             DB::commit();
 
@@ -86,6 +96,18 @@ class SchemesController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
+
+            if ($request->hasFile('upload_document')) {
+
+                if (!empty($scheme->upload_document)) {
+                    Storage::disk('public')->delete($scheme->upload_document);
+                }
+
+                $Doc = $request->file('upload_document');
+                $DocPath = $Doc->store('upload_document', 'public');
+                $input['upload_document'] = $DocPath;
+            }
+
             $scheme->update($input);
             DB::commit();
 

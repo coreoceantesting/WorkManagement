@@ -24,6 +24,9 @@ class StoreSchemeRequest extends FormRequest
         return [
             'name' => 'required',
             'initial' => 'required',
+            'source_of_fund' => 'nullable',
+            'fund' => 'nullable',
+            'upload_document' => 'nullable|file'
         ];
     }
 }

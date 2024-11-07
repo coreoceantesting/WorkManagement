@@ -17,14 +17,34 @@
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="name">Source Of Fund </label>
+                                    <select class="form-control" name="source_of_fund" id="source_of_fund">
+                                        <option value="">Select Source Of Fund</option>
+                                        @foreach ($sourceOfFundList as $list)
+                                            <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid source_of_fund_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="name">Scheme Name <span class="text-danger">*</span></label>
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Enter Scheme Name">
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="fund">Fund</label>
+                                    <input class="form-control" id="fund" name="fund" type="text" placeholder="Enter Fund">
+                                    <span class="text-danger is-invalid fund_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="upload_document">Upload Document </label>
+                                    <input class="form-control" id="upload_document" name="upload_document" type="file">
+                                    <span class="text-danger is-invalid upload_document_err"></span>
                                 </div>
                             </div>
 
@@ -53,14 +73,35 @@
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="name">Source Of Fund</label>
+                                    <select class="form-control" name="source_of_fund" id="source_of_fund">
+                                        <option value="">Select Source Of Fund</option>
+                                        @foreach ($sourceOfFundList as $list)
+                                            <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid source_of_fund_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="name">Scheme Name <span class="text-danger">*</span></label>
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Enter Scheme Name">
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="fund">Fund</label>
+                                    <input class="form-control" id="fund" name="fund" type="text" placeholder="Enter Fund">
+                                    <span class="text-danger is-invalid fund_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="upload_document">Upload Document </label>
+                                    <input class="form-control" id="upload_document" name="upload_document" type="file">
+                                    <small><a href="#" id="image" target="_blank" style="display: none;">View Document</a></small>
+                                    <span class="text-danger is-invalid upload_document_err"></span>
                                 </div>
                             </div>
 
@@ -185,6 +226,14 @@
                     $("#editForm input[name='edit_model_id']").val(data.scheme.id);
                     $("#editForm input[name='name']").val(data.scheme.name);
                     $("#editForm input[name='initial']").val(data.scheme.initial);
+                    $("#editForm select[name='source_of_fund']").val(data.scheme.source_of_fund);
+                    $("#editForm input[name='fund']").val(data.scheme.fund);
+                    var baseUrl = "{{ asset('storage') }}";
+                    if (data.scheme.upload_document) {
+                        $("#image").attr("href", baseUrl + '/' + data.scheme.upload_document).show();
+                    } else {
+                        $("#image").hide();
+                    }
                 }
                 else
                 {

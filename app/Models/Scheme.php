@@ -11,7 +11,7 @@ class Scheme extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'initial'];
+    protected $fillable = ['name', 'initial', 'source_of_fund', 'fund', 'upload_document'];
 
 
     public static function booted()
