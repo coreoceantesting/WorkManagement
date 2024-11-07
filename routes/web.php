@@ -55,6 +55,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('contractor', App\Http\Controllers\Admin\Masters\ContractorController::class);
     Route::resource('contractor_type', App\Http\Controllers\Admin\Masters\ContractorTypesController::class);
     Route::resource('contract_type', App\Http\Controllers\Admin\Masters\ContractTypesController::class);
+    Route::resource('deposit_type', App\Http\Controllers\Admin\Masters\DepositTypesController::class);
 
 
 

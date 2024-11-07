@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Contract Types</x-slot>
-    <x-slot name="heading">Contract Types</x-slot>
+    <x-slot name="title">Deposit Types</x-slot>
+    <x-slot name="heading">Deposit Types</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,14 +12,14 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Contract Types</h4>
+                            <h4 class="card-title">Add Deposit Types</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="contract_type_name">Contract Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contract_type_name" name="contract_type_name" type="text" placeholder="Enter Contract Type Name">
-                                    <span class="text-danger is-invalid contract_type_name_err"></span>
+                                    <label class="col-form-label" for="deposit_type_name">Deposit Type Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="deposit_type_name" name="deposit_type_name" type="text" placeholder="Enter Deposit Type Name">
+                                    <span class="text-danger is-invalid deposit_type_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
@@ -53,9 +53,9 @@
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="contract_type_name">Contract Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contract_type_name" name="contract_type_name" type="text" placeholder="Enter Contract Type Name">
-                                    <span class="text-danger is-invalid contract_type_name_err"></span>
+                                    <label class="col-form-label" for="deposit_type_name">Deposit Type Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="deposit_type_name" name="deposit_type_name" type="text" placeholder="Enter Deposit Type Name">
+                                    <span class="text-danger is-invalid deposit_type_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
@@ -94,20 +94,20 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Contract Type Name</th>
+                                        <th>Deposit Type Name</th>
                                         <th>Initial</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($contractTypesList as $list)
+                                    @foreach ($depositTypesList as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->contract_type_name }}</td>
+                                            <td>{{ $list->deposit_type_name }}</td>
                                             <td>{{ $list->initial }}</td>
                                             <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Contract Type" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
-                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete Contract Type" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit deposit Type" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
+                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete deposit Type" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -132,7 +132,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('contract_type.store') }}',
+            url: '{{ route('deposit_type.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -143,7 +143,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('contract_type.index') }}';
+                            window.location.href = '{{ route('deposit_type.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -170,7 +170,7 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('contract_type.edit', ":model_id") }}";
+        var url = "{{ route('deposit_type.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -182,9 +182,9 @@
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.contractType.id);
-                    $("#editForm input[name='contract_type_name']").val(data.contractType.contract_type_name);
-                    $("#editForm input[name='initial']").val(data.contractType.initial);
+                    $("#editForm input[name='edit_model_id']").val(data.depositType.id);
+                    $("#editForm input[name='deposit_type_name']").val(data.depositType.deposit_type_name);
+                    $("#editForm input[name='initial']").val(data.depositType.initial);
                 }
                 else
                 {
@@ -208,7 +208,7 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('contract_type.update', ":model_id") }}";
+            var url = "{{ route('deposit_type.update', ":model_id") }}";
             //
             $.ajax({
                 url: url.replace(':model_id', model_id),
@@ -222,7 +222,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('contract_type.index') }}';
+                                window.location.href = '{{ route('deposit_type.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -250,7 +250,7 @@
     $("#buttons-datatables").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
-            title: "Are you sure to delete this contract type?",
+            title: "Are you sure to delete this deposit type?",
             // text: "Make sure if you have filled Vendor details before proceeding further",
             icon: "info",
             buttons: ["Cancel", "Confirm"]
@@ -260,7 +260,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('contract_type.destroy', ":model_id") }}";
+                var url = "{{ route('deposit_type.destroy', ":model_id") }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),
