@@ -22,7 +22,7 @@ class UpdateBankRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bank_name' => 'required',
+            'bank_name' => "required|unique:banks,bank_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

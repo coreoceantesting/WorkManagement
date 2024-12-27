@@ -27,10 +27,12 @@ class StoreUserRequest extends FormRequest
             'name' => 'required',
             'gender' => 'required',
             'birthdate' => 'required',
+            'department'=> 'required',
             'email' => 'required|unique:users,email|email',
             'mobile' => 'required|unique:users,mobile|digits:10',
             'password' => 'required|min:8',
             'confirm_password' => 'required|same:password',
+
         ];
     }
 }

@@ -22,7 +22,7 @@ class UpdateSourceOfFundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => "required|unique:source_of_funds,name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

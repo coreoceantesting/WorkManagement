@@ -11,7 +11,7 @@ class Location extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['location_name', 'location_area', 'landmark', 'pincode', 'latitude', 'longitude'];
+    protected $fillable = ['location_name', 'location_area', 'landmark', 'pincode', 'latitude', 'longitude','status'];
 
 
     public static function booted()

@@ -1,6 +1,7 @@
 <x-admin.layout>
     <x-slot name="title">Financial Year</x-slot>
     <x-slot name="heading">Financial Year</x-slot>
+    
     @push('styles')
         <style>
             .size-checkbox {
@@ -97,7 +98,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" id="editSubmit">Submit</button>
+                        <button class="btn btn-primary" id="editSubmit">Update</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
                     </div>
                 </section>
@@ -138,8 +139,8 @@
                                 @foreach ($financial_years as $financial_year)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $financial_year->from_date }}</td>
-                                        <td>{{ $financial_year->to_date }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($financial_year->from_date)->format('d-m-Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($financial_year->to_date)->format('d-m-Y')}}</td>
                                         <td>{{ $financial_year->title }}</td>
                                         <td>
                                             <span class="badge" style="{{ $financial_year->is_active == 1 ? 'color:green' : 'color:red' }}" >
@@ -383,3 +384,4 @@
         });
     });
 </script>
+

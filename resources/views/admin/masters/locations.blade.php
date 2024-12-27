@@ -46,11 +46,20 @@
                                     <input class="form-control" id="longitude" name="longitude" type="text" placeholder="Enter Longitude">
                                     <span class="text-danger is-invalid longitude_err"></span>
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid status_err"></span>
+                                </div>
                             </div>
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="addSubmit">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </form>
@@ -102,6 +111,15 @@
                                     <input class="form-control" id="longitude" name="longitude" type="text" placeholder="Enter Longitude">
                                     <span class="text-danger is-invalid longitude_err"></span>
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" disabled selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid title_err"></span>
+                                </div>
                             </div>
 
                         </div>
@@ -140,6 +158,7 @@
                                         <th>PinCode</th>
                                         <th>Latitude</th>
                                         <th>Longitude</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -153,6 +172,13 @@
                                             <td>{{ $list->pincode }}</td>
                                             <td>{{ $list->latitude }}</td>
                                             <td>{{ $list->longitude }}</td>
+                                            <td>
+                                                @if($list->status == 1)
+                                                    Active
+                                                @else
+                                                    Inactive
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Scheme" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete Scheme" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
@@ -237,6 +263,7 @@
                     $("#editForm input[name='pincode']").val(data.location.pincode);
                     $("#editForm input[name='latitude']").val(data.location.latitude);
                     $("#editForm input[name='longitude']").val(data.location.longitude);
+                    $("#editForm select[name='status']").val(data.location.status);
                 }
                 else
                 {

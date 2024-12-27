@@ -24,10 +24,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereNot('id', Auth::user()->id)->latest()->get();
-        $roles = Role::orderBy('id', 'DESC')->whereNot('name', 'like', '%super%')->get();
+        // $users = User::with('department')->latest()->get();
 
-        return view('admin.users')->with(['users'=> $users, 'roles'=> $roles]);
+         $users = User::whereNot('users.id', Auth::user()->id)
+        ->leftjoin('departments','departments.id','=', 'users.id')
+        ->get();
+
+        // echo "<pre>";
+        // print_r($users);
+        $roles = Role::orderBy('id', 'DESC')->whereNot('name', 'like', '%super%')->get();
+        $department_data = Department::all();
+        return view('admin.users')->with(['users'=> $users, 'roles'=> $roles, 'department_data'=>$department_data]);
     }
 
     /**
@@ -70,35 +77,44 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    
     public function edit(User $user)
     {
         $roles = Role::whereNot('name', 'like', '%super%')->get();
         $user->loadMissing('roles');
-
-        if ($user)
-        {
-
+        $department = Department::all();
+    
+        if ($user) {
+            // Role HTML generation
             $roleHtml = '<span>
-                <option value="">--Select Role --</option>';
-                foreach($roles as $role):
-                    $is_select = $role->id == $user->roles[0]->id ? "selected" : "";
-                    $roleHtml .= '<option value="'.$role->id.'" '.$is_select.'>'.$role->name.'</option>';
-                endforeach;
+            <option value="">--Select Role--</option>';
+            foreach ($roles as $role) {
+                $is_select = $role->id == $user->roles[0]->id ? "selected" : "";
+                $roleHtml .= '<option value="' . $role->id . '" ' . $is_select . '>' . $role->name . '</option>';
+            }
             $roleHtml .= '</span>';
-
-
+            
+            $mastersHtml = '<span>
+            <option value="">--Select--</option>';
+            foreach ($department as $department) {
+                $is_select = $department->id == $department->department_id ? "selected" : "";
+                $mastersHtml .= '<option value="' . $department->id . '" ' . $is_select . '>' . $department->department_name . '</option>';
+            }
+            $mastersHtml .= '</span>';
+        
+            // Prepare the response with both HTML blocks
             $response = [
                 'result' => 1,
                 'user' => $user,
-                'roleHtml' => $roleHtml,
+                'mastersHtml' => $mastersHtml,  // Include the prefix HTML
+                'roleHtml' => $roleHtml,        // Include the role HTML
             ];
-        }
-        else
-        {
+        } else {
             $response = ['result' => 0];
         }
-        return $response;
+
     }
+        
 
     /**
      * Update the specified resource in storage.

@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class Contractor extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $fillable = ['contractor_name', 'company_name', 'email', 'contact_no', 'contractor_type'];
-
+    protected $table='vendor';
+    protected $fillable = ['accountname', 'contactnumber','gstnumber','epfnumber','pannumber','bank','ifsccode','accountnumber','labourwelfarescheme','vendorname','address','ip_address'];
 
     public static function booted()
     {

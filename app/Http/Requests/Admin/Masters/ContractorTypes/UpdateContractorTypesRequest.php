@@ -22,7 +22,7 @@ class UpdateContractorTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contractor_type_name' => 'required',
+            'contractor_type_name' => "required|unique:contractor_types,contractor_type_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

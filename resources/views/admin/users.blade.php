@@ -29,6 +29,16 @@
                                 <input class="form-control" id="email" name="email" type="email" placeholder="Enter User Email">
                                 <span class="text-danger is-invalid email_err"></span>
                             </div>
+                            <div class="col-md-4 mt-3">
+                                    <label class="col-form-label" for="select Department">Department<span class="text-danger">*</span></label>
+                                    <select class="form-control" id="select Department" name="department">
+                                        <option value="">-- select Department --</option>
+                                        @foreach($department_data as $dept)
+                                        <option value="{{ $dept->id }}">{{ $dept->department_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid department__err"></span>
+                                </div>
 
                             <div class="col-md-4 mt-3">
                                 <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
@@ -139,6 +149,15 @@
                             </div>
 
                             <div class="col-md-4">
+                                    <label class="col-form-label" for="select department">Select Department<span class="text-danger">*</span></label>
+                                    <select class="form-control" id="select department" name="department">
+                                        <option value=""  selected>-- Select Department --</option>
+
+                                    </select>
+                                    <span class="text-danger is-invalid department_err"></span>
+                                </div>
+
+                            <div class="col-md-4">
                                 <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
                                 <input class="form-control" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                                     placeholder="Enter User Mobile">
@@ -206,6 +225,7 @@
                                     <th>Sr No</th>
                                     <th>Full Name</th>
                                     <th>Email</th>
+                                    <th>Department</th>
                                     <th>Mobile</th>
                                     {{-- <th style="min-width: 100px;">Status</th> --}}
                                     <th>Registered On</th>
@@ -213,11 +233,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                               
                                 @foreach ($users as $user)
+
+                             
+
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->department_name }}</td>
                                         <td>{{ $user->mobile }}</td>
                                         {{-- <td>
                                             <div class="media-body text-end icon-state">
@@ -505,6 +530,7 @@
                     $("#editForm select[name='role']").html(data.roleHtml);
                     $("#editForm input[name='name']").val(data.user.name);
                     $("#editForm input[name='email']").val(data.user.email);
+                    $("#editForm select[name='department']").html(data.mastersHtml);
                     $("#editForm input[name='mobile']").val(data.user.mobile);
                     $("#editForm select[name='gender']").val(data.user.gender);
                     $("#editForm input[name='birthdate']").val(data.user.birthdate);

@@ -22,12 +22,13 @@ class StoreLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'location_name' => 'required',
+            'location_name' => 'required|unique:locations,location_name,NULL,NULL,deleted_at,NULL',
             'location_area' => 'required',
             'landmark' => 'required',
             'pincode' => 'required|digits:6',
             'latitude' => 'required',
-            'longitude' => 'required'
+            'longitude' => 'required',
+            'status'  => 'required'
         ];
     }
 }

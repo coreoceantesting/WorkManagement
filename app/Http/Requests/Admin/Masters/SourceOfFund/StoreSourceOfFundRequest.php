@@ -22,7 +22,7 @@ class StoreSourceOfFundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:source_of_funds,name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
         ];
     }

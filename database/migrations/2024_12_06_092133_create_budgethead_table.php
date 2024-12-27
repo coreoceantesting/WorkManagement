@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contractors', function (Blueprint $table) {
+        Schema::create('budgethead', function (Blueprint $table) {
             $table->id();
-            $table->string('contractor_name');
-            $table->string('company_name');
-            $table->string('email');
-            $table->string('contact_no');
+            $table->string('budgetyear');  
+            $table->string('department'); 
+            $table->string('budgethead');
+            $table->string('budgetamount');
+            $table->string('ip_address')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');
             $table->foreignId('deleted_by')->nullable()->constrained('users');
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contractors');
+        Schema::dropIfExists('budgethead');
     }
 };

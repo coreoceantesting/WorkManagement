@@ -22,7 +22,7 @@ class StorePaymentModeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'payment_mode_name' => 'required|unique:payment_modes,payment_mode_name',
+            'payment_mode_name' => 'required|unique:payment_modes,payment_mode_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
         ];
     }

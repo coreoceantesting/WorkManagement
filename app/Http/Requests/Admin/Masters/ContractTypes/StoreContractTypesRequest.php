@@ -22,7 +22,7 @@ class StoreContractTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract_type_name' => 'required|unique:contract_types,contract_type_name',
+            'contract_type_name' => 'required|unique:banks,bank_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
         ];
     }

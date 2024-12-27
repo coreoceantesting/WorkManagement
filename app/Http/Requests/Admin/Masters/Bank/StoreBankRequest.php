@@ -22,7 +22,7 @@ class StoreBankRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bank_name' => 'required|unique:banks,bank_name',
+            'bank_name' => 'required|unique:banks,bank_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
         ];
     }

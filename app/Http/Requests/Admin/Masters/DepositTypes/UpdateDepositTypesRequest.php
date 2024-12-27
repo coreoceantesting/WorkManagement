@@ -22,7 +22,7 @@ class UpdateDepositTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'deposit_type_name' => 'required',
+            'deposit_type_name' => "required|unique:deposit_types,deposit_type_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

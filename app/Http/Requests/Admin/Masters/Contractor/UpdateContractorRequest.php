@@ -22,11 +22,17 @@ class UpdateContractorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contractor_name' => 'required',
-            'company_name' => 'required',
-            'contractor_type' => 'required',
-            'email' => 'required|email',
-            'contact_no' => 'required|digits:10',
+            'pannumber' => 'required',
+            'gstnumber' => 'required',
+            'epfnumber' => 'required',
+            'bank' => 'required',
+            'contactnumber' => 'required|digits:10',
+            'accountnumber' => 'required',
+            'accountname' => 'required',
+            'ifsccode' => 'required',
+            'vendorname'=>'required',
+            'address' => 'required',
+            'labourwelfarescheme' => 'required',
         ];
     }
 }

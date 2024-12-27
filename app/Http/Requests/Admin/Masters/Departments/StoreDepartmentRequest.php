@@ -22,8 +22,9 @@ class StoreDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department_name' => 'required|unique:departments,department_name',
+            'department_name' => 'required|unique:departments,department_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
+            'status'  => 'required'
         ];
     }
 }

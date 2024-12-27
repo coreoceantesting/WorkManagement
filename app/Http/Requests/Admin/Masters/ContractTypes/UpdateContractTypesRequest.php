@@ -22,7 +22,7 @@ class UpdateContractTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract_type_name' => 'required',
+            'contract_type_name' => "required|unique:field,field_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

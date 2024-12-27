@@ -22,7 +22,7 @@ class StoreDepositTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'deposit_type_name' => 'required|unique:deposit_types,deposit_type_name',
+            'deposit_type_name' => 'required|unique:deposit_types,deposit_type_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
         ];
     }

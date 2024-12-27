@@ -22,7 +22,7 @@ class UpdateDesignationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'designations_name' => 'required',
+            'designations_name' => "required|unique:designations,designations_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }

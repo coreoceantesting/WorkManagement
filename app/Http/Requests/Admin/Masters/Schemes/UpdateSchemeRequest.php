@@ -22,7 +22,7 @@ class UpdateSchemeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => "required|unique:schemes,name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
             'source_of_fund' => 'nullable',
             'fund' => 'nullable',

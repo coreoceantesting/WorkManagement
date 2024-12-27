@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Masters\Departments\StoreDepartmentRequest;
 use App\Http\Requests\Admin\Masters\Departments\UpdateDepartmentRequest;
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,13 @@ class DepartmentsController extends Controller
 
         return view('admin.masters.departments')->with(['departmentsList'=> $departmentsList]);
     }
+
+    public function getuserBydepartment($department)
+    {
+        $user = User::where('departname_name', $department)->get();
+        return response()->json($user);
+    }
+
 
     /**
      * Show the form for creating a new resource.

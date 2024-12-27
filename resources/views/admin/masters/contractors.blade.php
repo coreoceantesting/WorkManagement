@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Contractors</x-slot>
-    <x-slot name="heading">Contractors</x-slot>
+    <x-slot name="title">Vendors</x-slot>
+    <x-slot name="heading">Vendors</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,40 +12,71 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Contractors</h4>
+                            <h4 class="card-title">Add Vendors</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_name">Contractor Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_name" name="contractor_name" type="text" placeholder="Enter Contractor Name">
-                                    <span class="text-danger is-invalid contractor_name_err"></span>
+                            <div class="col-md-4">
+                                    <label class="col-form-label" for="pannumber">PAN Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="pannumber" name="pannumber" type="text" placeholder="Enter PAN Number">
+                                    <span class="text-danger is-invalid pannumber_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label  class="col-form-label" for="contractor_type">Contractor Type <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="contractor_type" id="contractor_type">
-                                        <option value="">Select Contractor Type</option>
-                                        @foreach ($contractorTypeList as $list)
-                                            <option value="{{ $list->id }}">{{ $list->contractor_type_name }}</option>
-                                        @endforeach
+                                    <label class="col-form-label" for="gstnumber">GST Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="gstnumber" name="gstnumber" type="text" placeholder="Enter GST Number">
+                                    <span class="text-danger is-invalid gstnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="epfnumber">EPF Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="epfnumber" name="epfnumber" type="text" placeholder="Enter EPF Number">
+                                    <span class="text-danger is-invalid epfnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="bank">Bank Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="bank" name="bank" type="text" placeholder="Enter Bank">
+                                    <span class="text-danger is-invalid bank_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="accountnumber">Account Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="accountnumber" name="accountnumber" type="text" placeholder="Enter Account Number">
+                                    <span class="text-danger is-invalid accountnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="accountname">Account Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="accountname" name="accountname" type="text" placeholder="Enter Account Name">
+                                    <span class="text-danger is-invalid accountname_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="vendorname">Vendor Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="vendorname" name="vendorname" type="text" placeholder="Enter Vendor Name">
+                                    <span class="text-danger is-invalid vendorname_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="ifsccode">IFSC Code<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="ifsccode" name="ifsccode" type="text" placeholder="Enter IESC Code">
+                                    <span class="text-danger is-invalid ifsccode_err"></span>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="address">Vendor Address<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
+                                    <span class="text-danger is-invalid address_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="contactnumber">Vendor Contact No <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="contactnumber" name="contactnumber" type="number" placeholder="Enter Contact No">
+                                    <span class="text-danger is-invalid contactnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="labourwelfarescheme">Labour Welfare Scheme <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="labourwelfarescheme" name="labourwelfarescheme">
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="applicable">Applicable</option>
+                                        <option value="not_applicable">Not Applicable</option>
                                     </select>
-                                    <span class="text-danger is-invalid contractor_type_err"></span>
+                                    <span class="text-danger is-invalid labourwelfarescheme_err"></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="company_name">Company Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="company_name" name="company_name" type="text" placeholder="Enter Company Name">
-                                    <span class="text-danger is-invalid company_name_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="email">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter Email">
-                                    <span class="text-danger is-invalid email_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="contact_no">Contact No <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contact_no" name="contact_no" type="number" placeholder="Enter Contact No">
-                                    <span class="text-danger is-invalid contact_no_err"></span>
-                                </div>
+
                             </div>
 
                         </div>
@@ -67,46 +98,77 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Contractor</h4>
+                            <h4 class="card-title">Edit Vendor</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_name">Contractor Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_name" name="contractor_name" type="text" placeholder="Enter Contractor Name">
-                                    <span class="text-danger is-invalid contractor_name_err"></span>
+                                    <label class="col-form-label" for="pannumber">PAN Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="pannumber" name="pannumber" type="text" placeholder="Enter PAN Number">
+                                    <span class="text-danger is-invalid pannumber_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label  class="col-form-label" for="contractor_type">Contractor Type <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="contractor_type" id="contractor_type">
-                                        <option value="">Select Contractor Type</option>
-                                        @foreach ($contractorTypeList as $list)
-                                            <option value="{{ $list->id }}">{{ $list->contractor_type_name }}</option>
-                                        @endforeach
+                                    <label class="col-form-label" for="gstnumber">GST Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="gstnumber" name="gstnumber" type="text" placeholder="Enter GST Number">
+                                    <span class="text-danger is-invalid gstnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="epfnumber">EPF Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="epfnumber" name="epfnumber" type="text" placeholder="Enter EPF Number">
+                                    <span class="text-danger is-invalid epfnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="bank">Bank Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="bank" name="bank" type="text" placeholder="Enter Bank">
+                                    <span class="text-danger is-invalid bank_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="accountnumber">Account Number<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="accountnumber" name="accountnumber" type="text" placeholder="Enter Account Number">
+                                    <span class="text-danger is-invalid accountnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="accountname">Account Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="accountname" name="accountname" type="text" placeholder="Enter Account Name">
+                                    <span class="text-danger is-invalid accountname_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="vendorname">Vendor Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="vendorname" name="vendorname" type="text" placeholder="Enter Vendor Name">
+                                    <span class="text-danger is-invalid vendorname_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="ifsccode">IFSC Code<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="ifsccode" name="ifsccode" type="text" placeholder="Enter IESC Code">
+                                    <span class="text-danger is-invalid ifsccode_err"></span>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="address">Vendor Address<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
+                                    <span class="text-danger is-invalid address_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="contactnumber">Vendor Contact No <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="contactnumber" name="contactnumber" type="number" placeholder="Enter Contact No">
+                                    <span class="text-danger is-invalid contactnumber_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="labourwelfarescheme">Labour Welfare Scheme <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="labourwelfarescheme" name="labourwelfarescheme">
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="applicable">Applicable</option>
+                                        <option value="not_applicable">Not Applicable</option>
                                     </select>
-                                    <span class="text-danger is-invalid contractor_type_err"></span>
+                                    <span class="text-danger is-invalid labourwelfarescheme_err"></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="company_name">Company Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="company_name" name="company_name" type="text" placeholder="Enter Company Name">
-                                    <span class="text-danger is-invalid company_name_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="email">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter Email">
-                                    <span class="text-danger is-invalid email_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="contact_no">Contact No <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contact_no" name="contact_no" type="number" placeholder="Enter Contact No">
-                                    <span class="text-danger is-invalid contact_no_err"></span>
-                                </div>
+
                             </div>
 
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary" id="editSubmit">Submit</button>
+                            <button class="btn btn-primary" id="editSubmit">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </div>
@@ -134,11 +196,17 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Contractor Name</th>
-                                        <th>Contractor Type</th>
-                                        <th>Company Name</th>
-                                        <th>Email</th>
-                                        <th>Contact No</th>
+                                        <th>PAN Number</th>
+                                        <th>GST Number</th>
+                                        <th>EPF Number</th>
+                                        <th>Bank Name</th>
+                                        <th>Account Number</th>
+                                        <th>Account Name</th>
+                                        <th>Vendor Name</th>
+                                        <th>IESC Code</th>
+                                        <th>Vendor Address</th>
+                                        <th>Vendor Contact No</th>
+                                        <th>Labour Welfare Scheme</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -146,11 +214,17 @@
                                     @foreach ($contractorsList as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->contractor_name }}</td>
-                                            <td>{{ $list->contractor_type_name }}</td>
-                                            <td>{{ $list->company_name }}</td>
-                                            <td>{{ $list->email }}</td>
-                                            <td>{{ $list->contact_no }}</td>
+                                            <td>{{ $list->pannumber}}</td>
+                                            <td>{{ $list->gstnumber }}</td>
+                                            <td>{{ $list->epfnumber}}</td>
+                                            <td>{{ $list->bank }}</td>
+                                            <td>{{ $list->accountnumber}}</td>
+                                            <td>{{ $list->accountname}}</td>
+                                            <td>{{ $list->vendorname}}</td>
+                                            <td>{{ $list->ifsccode}}</td>
+                                            <td>{{ $list->address}}</td>
+                                            <td>{{ $list->contactnumber}}</td>
+                                            <td>{{ $list->labourwelfarescheme}}</td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Contractor" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete Contractor" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
@@ -230,12 +304,19 @@
                 if (!data.error)
                 {
                     $("#editForm input[name='edit_model_id']").val(data.contractor.id);
-                    $("#editForm input[name='contractor_name']").val(data.contractor.contractor_name);
-                    $("#editForm input[name='company_name']").val(data.contractor.company_name);
-                    $("#editForm input[name='email']").val(data.contractor.email);
-                    $("#editForm input[name='contact_no']").val(data.contractor.contact_no);
-                    $("#editForm select[name='contractor_type']").val(data.contractor.contractor_type);
+                    $("#editForm input[name='accountname']").val(data.contractor.accountname);
+                    $("#editForm input[name='vendorname']").val(data.contractor.vendorname);
+                    $("#editForm input[name='contactnumber']").val(data.contractor.contactnumber);
+                    $("#editForm input[name='epfnumber']").val(data.contractor.epfnumber);
+                    $("#editForm input[name='gstnumber']").val(data.contractor.gstnumber);
+                    $("#editForm input[name='pannumber']").val(data.contractor.pannumber);
+                    $("#editForm input[name='bank']").val(data.contractor.bank);
+                    $("#editForm input[name='ifsccode']").val(data.contractor.ifsccode);
+                    $("#editForm input[name='accountnumber']").val(data.contractor.accountnumber);
+                    $("#editForm textarea[name='address']").val(data.contractor.address);
+                    $("#editForm select[name='labourwelfarescheme']").val(data.contractor.labourwelfarescheme);
                 }
+
                 else
                 {
                     alert(data.error);

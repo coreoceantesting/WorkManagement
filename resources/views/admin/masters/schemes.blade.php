@@ -107,7 +107,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary" id="editSubmit">Submit</button>
+                            <button class="btn btn-primary" id="editSubmit">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </div>

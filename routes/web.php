@@ -31,8 +31,8 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
 
 
 
-// Authenticated users
-Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(function () {
+    // Authenticated users
+    Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(function () {
 
     // Auth Routes
     Route::get('home', fn () => redirect()->route('dashboard'))->name('home');
@@ -58,8 +58,40 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('deposit_type', App\Http\Controllers\Admin\Masters\DepositTypesController::class);
     Route::resource('bank', App\Http\Controllers\Admin\Masters\BanksController::class);
     Route::resource('payment_mode', App\Http\Controllers\Admin\Masters\PaymentModeController::class);
+    Route::resource('sor', App\Http\Controllers\Admin\Masters\SORController::class);
+    Route::resource('cow', App\Http\Controllers\Admin\Masters\COWController::class);
+    Route::resource('ratetype', App\Http\Controllers\Admin\Masters\RateTypeController::class);
+    Route::post('/import',[App\Http\Controllers\Admin\Masters\RateTypeController::class,'import'])->name('import'); 
+    Route::resource('field', App\Http\Controllers\Admin\Masters\FieldController::class);
+    Route::resource('budgethead', App\Http\Controllers\Admin\Masters\BudgetHeadController::class);
+    Route::resource('majorfund', App\Http\Controllers\Admin\Masters\Fund\MajorFundController::class);
+    Route::resource('minorfund', App\Http\Controllers\Admin\Masters\Fund\MinorFundController::class);
+    Route::resource('tax', App\Http\Controllers\Admin\Masters\TaxController::class);
+    Route::resource('work', App\Http\Controllers\Admin\Masters\WorkController::class);
+    Route::resource('project', App\Http\Controllers\Admin\Masters\ProjectController::class);
+    Route::resource('asset', App\Http\Controllers\Admin\Masters\AssetController::class);
+    Route::resource('form', App\Http\Controllers\Admin\Form\FormController::class);
+    Route::resource('laboratory', App\Http\Controllers\Admin\Masters\LaboratoryController::class);
+    Route::resource('bgsd', App\Http\Controllers\Admin\Masters\BgsdController::class);
+    Route::resource('bid', App\Http\Controllers\Admin\Masters\BidController::class);
+    Route::resource('tenderentry', App\Http\Controllers\Admin\Masters\TenderEntryController::class);
+    Route::get('search/results', [ App\Http\Controllers\Admin\Masters\TenderEntryController::class, 'getResults'])->name('search.results');
+    Route::resource('approvalsanction', App\Http\Controllers\Admin\Masters\ApprovalSanctionController::class);
+    Route::resource('tenderexecution', App\Http\Controllers\Admin\Masters\TenderExecutionController::class);
+    
 
 
+
+    //prefix
+    Route::resource('mainprefix', App\Http\Controllers\Admin\Prefix\mainprefixController::class);
+    Route::resource('prefixdetail', App\Http\Controllers\Admin\Prefix\prefixdetailController::class);
+    Route::get('/prefixdetail/{mainprefix_id}', [ App\Http\Controllers\Admin\Prefix\prefixdetailController::class, 'getprefixdetailBymainprefix']);
+
+    //projectinformation
+    Route::resource('projectinfo', App\Http\Controllers\Admin\Masters\ProjectinfoController::class);
+    Route::get('/workdefinition/{id}', [ App\Http\Controllers\Admin\Masters\WorkdefinitionController::class, 'getDepartment']);
+    Route::resource('workdefinition', App\Http\Controllers\Admin\Masters\WorkdefinitionController::class);
+    // Route::get('/projectinfo/{status}', App\Http\Controllers\Admin\Masters\ProjectinfoController::class);
 
 
     // Users Roles n Permissions
@@ -70,6 +102,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::get('users/{user}/get-role', [App\Http\Controllers\Admin\UserController::class, 'getRole'])->name('users.get-role');
     Route::put('users/{user}/assign-role', [App\Http\Controllers\Admin\UserController::class, 'assignRole'])->name('users.assign-role');
     Route::resource('roles', App\Http\Controllers\Admin\RoleController::class);
+    Route::get('/users/{department_id}', [ App\Http\Controllers\Admin\UserController::class, 'getuserBydepartment']);
 });
 
 

@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class Department extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $fillable = ['department_name', 'initial'];
+    
+    protected $fillable = ['department_name', 'initial','status'];
 
 
     public static function booted()

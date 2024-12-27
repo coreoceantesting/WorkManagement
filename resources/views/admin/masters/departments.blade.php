@@ -26,6 +26,15 @@
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid status_err"></span>
+                                </div>
                             </div>
 
                         </div>
@@ -62,11 +71,20 @@
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" disabled selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid title_err"></span>
+                                </div>
                             </div>
 
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary" id="editSubmit">Submit</button>
+                            <button class="btn btn-primary" id="editSubmit">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </div>
@@ -96,6 +114,7 @@
                                         <th>Sr No.</th>
                                         <th>Department Name</th>
                                         <th>Initial</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -105,6 +124,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->department_name }}</td>
                                             <td>{{ $list->initial }}</td>
+                                            <td>
+                                                @if($list->status == 1)
+                                                    Active
+                                                @else
+                                                    Inactive
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Department" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete Department" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
@@ -185,6 +211,7 @@
                     $("#editForm input[name='edit_model_id']").val(data.department.id);
                     $("#editForm input[name='department_name']").val(data.department.department_name);
                     $("#editForm input[name='initial']").val(data.department.initial);
+                    $("#editForm select[name='status']").val(data.department.status);
                 }
                 else
                 {

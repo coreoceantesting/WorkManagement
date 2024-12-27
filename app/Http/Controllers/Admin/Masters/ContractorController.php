@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Masters;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\Masters\Contractor\StoreContractorRequest;
 use App\Http\Requests\Admin\Masters\Contractor\UpdateContractorRequest;
 use App\Models\Contractor;
@@ -20,14 +20,17 @@ class ContractorController extends Controller
      */
     public function index()
     {
-        $contractorsList = Contractor::join('contractor_types', 'contractors.contractor_type', '=', 'contractor_types.id')
-        ->select('contractors.*', 'contractor_types.contractor_type_name')
-        ->whereNull('contractors.deleted_by')
-        ->orderBy('contractors.id', 'desc')
-        ->get();
-        $contractorTypeList = ContractorType::latest()->get();
+        $contractorsList = Contractor::latest()->get();
 
-        return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList, 'contractorTypeList' => $contractorTypeList]);
+        return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList]);
+        // $contractorsList = Contractor::join('contractor_types', 'contractors.contractor_type', '=', 'contractor_types.id')
+        // ->select('contractors.*', 'contractor_types.contractor_type_name')
+        // ->whereNull('contractors.deleted_by')
+        // ->orderBy('contractors.id', 'desc')
+        // ->get();
+        // $contractorTypeList = ContractorType::latest()->get();
+
+        // return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList, 'contractorTypeList' => $contractorTypeList]);
     }
 
     /**

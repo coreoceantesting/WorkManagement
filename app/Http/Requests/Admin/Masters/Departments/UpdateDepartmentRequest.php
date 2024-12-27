@@ -22,8 +22,9 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department_name' => 'required',
+            'department_name' => "required|unique:departments,department_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
+            'status'  => 'required'
         ];
     }
 }

@@ -22,7 +22,7 @@ class UpdatePaymentModeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'payment_mode_name' => 'required',
+            'payment_mode_name' => "required|unique:payment_modes,payment_mode_name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
         ];
     }
