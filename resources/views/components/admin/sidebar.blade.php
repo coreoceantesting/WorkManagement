@@ -210,11 +210,11 @@
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->routeIs('projectinfo.index') ? 'active' : '' }}" href="{{ route('projectinfo.index') }}" >
-                        <i class="ri-dashboard-2-line"></i>
-                        <span data-key="t-dashboards">Project Information</span>
-                    </a>
-                </li>
+                        <a class="nav-link menu-link {{ request()->routeIs('projectinfo.index') ? 'active' : '' }}" href="{{ route('projectinfo.index') }}" >
+                            <i class="ri-dashboard-2-line"></i>
+                            <span data-key="t-dashboards">Project Information</span>
+                        </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('workdefinition.index') ? 'active' : '' }}" href="{{ route('workdefinition.index') }}" >
                         <i class="ri-dashboard-2-line"></i>

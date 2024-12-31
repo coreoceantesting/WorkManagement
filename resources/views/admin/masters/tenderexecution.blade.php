@@ -231,6 +231,7 @@
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="upload_document">Upload Document </label>
                                     <input class="form-control" id="upload_document" name="upload_document" type="file">
+                                    <a id="upload_document_file" href="" target="_blank" style="display:block;">View Document</a>
                                     <span class="text-danger is-invalid upload_document_err"></span>
                                 </div>
 
@@ -308,7 +309,14 @@
                                         <td>{{ $list?->addition_performance_sd}}</td>
                                         <td>{{ $list->provisional_sum}} </td>
                                         <td>{{ $list?->devaluation_percentage}}</td>
-                                        <td>{{ $list->upload_document}} </td>
+                                        <td>
+                                            @if($list->upload_document)
+                                                <a href="{{ asset('storage/' . $list->upload_document) }}" target="_blank">View Document</a>
+                                            @else
+                                                No Document Available
+                                            @endif
+                                        </td>
+                                        
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
@@ -404,12 +412,19 @@
                     $("#editForm input[name='addition_performance_sd']").val(data.tenderexecution.addition_performance_sd);
                     $("#editForm input[name='provisional_sum']").val(data.tenderexecution.provisional_sum);
                     $("#editForm input[name='devaluation_percentage']").val(data.tenderexecution.devaluation_percentage);
-                    var baseUrl = "{{ asset('storage') }}";
+                    var baseUrl = "{{ asset('storage') }}"; 
                     if (data.tenderexecution.upload_document) {
-                        $("#image").attr("href", baseUrl + '/' + data.tenderexecution.upload_document).show();
-                    } else {
-                        $("#image").hide();
-                    }
+                    var documentUrl = baseUrl + '/' + data.tenderexecution.upload_document;
+                    console.log('Document URL:', documentUrl);  
+
+                    $("#upload_document_file").attr("href", documentUrl)
+                                         .text("View Document")
+                                         .show(); 
+                } else {
+                    $("#upload_document_file").hide(); 
+                }
+                   
+
                 }
                 else
                 {

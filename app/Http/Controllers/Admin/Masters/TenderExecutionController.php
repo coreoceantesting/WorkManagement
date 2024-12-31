@@ -37,17 +37,52 @@ class TenderExecutionController extends Controller
         try
         {
             DB::beginTransaction();
-            $input = $request->validated();
+          
+            $request->validate([
+                'department' => 'required',
+                'projectname' => 'required',
+                'resolution' => 'required',
+                'resolution_date' => 'required',
+                'pre_bid_meeting_date' => 'required',
+                'meeting_location' => 'required',
+                'issue_from_date' => 'required',
+                'issue_till_date' => 'required',
+                'publish_date' => 'required',
+                'technical_bid_open_date' => 'required',
+                'financial_bid_open_date' => 'required',
+                'tender_category' => 'required',
+                'validity_of_tender' => 'required|integer',
+                'bank_guarantee' => 'required',
+                'addition_performance_sd' => 'required',
+                'provisional_sum' => 'required',
+                'devaluation_percentage' => 'required',
+            ]);
+
+
+            if ($request->hasFile('upload_document')) {
+                $file = $request->file('upload_document');
+                $filePath = $file->store('tender_documents', 'public');
+                $input = $request->validated();
+                $input['upload_document'] = $filePath;
+            }
+
             TenderExecution::create($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Tender Execution and Award created successfully!']);
+            return response()->json(['success' => 'Tender Execution and Award created successfully!']);
         }
-        catch(\Exception $e)
+        catch (\Exception $e)
         {
-            return $this->respondWithAjax($e, 'creating', 'TenderExecution');
+            DB::rollBack();
+            return response()->json([
+                'error' => true,
+                'message' => 'An error occurred while creating the Tender Execution.',
+                'details' => $e->getMessage()
+            ], 500); 
         }
     }
+
+
 
     /**
      * Display the specified resource.

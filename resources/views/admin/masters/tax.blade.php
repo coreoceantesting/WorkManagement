@@ -61,6 +61,7 @@
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="taxfile">Upload Document </label>
                                     <input class="form-control" id="taxfile" name="taxfile" type="file">
+                                    <a id="taxfile_file" href="" target="_blank" style="display:block;">View Document</a>
                                     <span class="text-danger is-invalid taxfile_err"></span>
                                 </div>
 
@@ -105,8 +106,15 @@
                                     @foreach ($tax as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->subject}}</td>
-                                            <td>{{ $list->taxfile}}</td>
+                                            <td>{{ $list->subject }}</td>
+                                            <td>
+                                                @if($list->taxfile)
+                                                    <a href="{{ Storage::url($list->taxfile) }}" target="_blank">View Document</a>
+                                                @else
+                                                    No Document Available
+                                                @endif
+                                            </td>
+
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Tax" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete Tax" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
@@ -186,11 +194,16 @@
                 {
                     $("#editForm input[name='edit_model_id']").val(data.tax.id);
                     $("#editForm input[name='subject']").val(data.tax.subject);
-                    var baseUrl = "{{ asset('storage') }}";
+                    var baseUrl = "{{ asset('storage') }}"; 
                     if (data.tax.taxfile) {
-                        $("#image").attr("href", baseUrl + '/' + data.tax.taxfile).show();
+                    var documentUrl = baseUrl + '/' + data.tax.taxfile;
+                    console.log('Document URL:', documentUrl);  
+
+                    $("#taxfile_file").attr("href", documentUrl)
+                                         .text("View Document")
+                                         .show(); 
                     } else {
-                        $("#image").hide();
+                        $("#taxfile_file").hide(); 
                     }
                 }
                 else

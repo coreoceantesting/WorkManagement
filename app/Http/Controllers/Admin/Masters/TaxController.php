@@ -33,21 +33,27 @@ class TaxController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreTaxRequest $request)
-    {
-        try
-        {
-            DB::beginTransaction();
-            $input = $request->validated();
-            Tax::create($input);
-            DB::commit();
+{
+    try {
+        DB::beginTransaction();
+        $input = $request->validated();
+        if ($request->hasFile('taxfile') && $request->file('taxfile')->isValid()) {
+            $file = $request->file('taxfile');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('taxes', $fileName, 'public');
+            $input['taxfile'] = $filePath;
+        }
 
-            return response()->json(['success'=> 'Tax created successfully!']);
-        }
-        catch(\Exception $e)
-        {
-            return $this->respondWithAjax($e, 'creating', 'Tax');
-        }
+        Tax::create($input);
+
+        DB::commit();
+
+        return response()->json(['success' => 'Tax created successfully!']);
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return $this->respondWithAjax($e, 'creating', 'Tax');
     }
+}
 
     /**
      * Display the specified resource.

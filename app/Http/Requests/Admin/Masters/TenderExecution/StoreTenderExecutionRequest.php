@@ -22,25 +22,24 @@ class StoreTenderExecutionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department' =>'required',
+            'department' => 'required',
             'projectname' => 'required',
             'resolution' => 'required',
-            'resolution_date' =>'required',
+            'resolution_date' => 'required',
             'pre_bid_meeting_date' => 'required',
             'meeting_location' => 'required',
             'issue_from_date' => 'required',
             'issue_till_date' => 'required',
             'publish_date' => 'required',
-            'technical_bid_open_date' =>'required',
+            'technical_bid_open_date' => 'required',
             'financial_bid_open_date' => 'required',
-            'tender_category' =>'required',
-            'validity_of_tender' => 'required',
+            'tender_category' => 'required',
+            'validity_of_tender' => 'required|integer',
             'bank_guarantee' => 'required',
-            'addition_performance_sd' =>'required',
+            'addition_performance_sd' => 'required',
             'provisional_sum' => 'required',
-            'devaluation_percentage' => 'required|numeric|between:0,100',
-            'upload_document' => 'required',
-            'ip_address'=>'nullable'
+            'devaluation_percentage' => 'required',
+            'upload_document' => 'nullable|file|mimes:pdf,doc,docx,jpg,png',
         ];
     }
 }
