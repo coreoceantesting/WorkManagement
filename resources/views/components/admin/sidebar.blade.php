@@ -183,6 +183,9 @@
                                 <li class="nav-item">
                                     <a href="{{ route('tenderexecution.index') }}" class="nav-link {{ request()->routeIs('tenderexecution.index') ? 'active' : '' }}" data-key="t-horizontal">Tender Execution And Award</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('workordergeneration.index') }}" class="nav-link {{ request()->routeIs('workordergeneration.index') ? 'active' : '' }}" data-key="t-horizontal">Work Order Generation</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -215,12 +218,21 @@
                             <span data-key="t-dashboards">Project Information</span>
                         </a>
                     </li>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('workdefinition.index') ? 'active' : '' }}" href="{{ route('workdefinition.index') }}" >
                         <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards">Work Definition</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('extensionperiod.index') ? 'active' : '' }}" href="{{ route('extensionperiod.index') }}" >
+                        <i class="ri-dashboard-2-line"></i>
+                        <span data-key="t-dashboards">Extension Period</span>
+                    </a>
+                </li>
+
+              
 
 
                 

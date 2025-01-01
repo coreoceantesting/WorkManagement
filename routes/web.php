@@ -78,7 +78,9 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::get('search/results', [ App\Http\Controllers\Admin\Masters\TenderEntryController::class, 'getResults'])->name('search.results');
     Route::resource('approvalsanction', App\Http\Controllers\Admin\Masters\ApprovalSanctionController::class);
     Route::resource('tenderexecution', App\Http\Controllers\Admin\Masters\TenderExecutionController::class);
-    
+    Route::resource('workordergeneration',App\Http\Controllers\Admin\Masters\WorkOrderGenerationController::class);
+    Route::resource('tenders',App\Http\Controllers\Admin\Masters\TenderController::class);
+    Route::resource('extensionperiod',App\Http\Controllers\Admin\Masters\ExtensionperiodController::class);
 
 
 
