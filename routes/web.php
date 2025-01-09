@@ -81,7 +81,10 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('workordergeneration',App\Http\Controllers\Admin\Masters\WorkOrderGenerationController::class);
     Route::resource('tenders',App\Http\Controllers\Admin\Masters\TenderController::class);
     Route::resource('extensionperiod',App\Http\Controllers\Admin\Masters\ExtensionperiodController::class);
-
+    Route::resource('physicalmilestone',App\Http\Controllers\Admin\Masters\PhysicalMilestoneController::class);
+    Route::resource('measurementbook',App\Http\Controllers\Admin\Masters\MeasurementBookController::class);
+    Route::get('workorderdata', [App\Http\Controllers\Admin\Masters\MeasurementBookController::class, 'workorder_data'])->name('workorderdata');
+    
 
 
     //prefix

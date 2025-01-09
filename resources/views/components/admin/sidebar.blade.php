@@ -186,6 +186,12 @@
                                 <li class="nav-item">
                                     <a href="{{ route('workordergeneration.index') }}" class="nav-link {{ request()->routeIs('workordergeneration.index') ? 'active' : '' }}" data-key="t-horizontal">Work Order Generation</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('physicalmilestone.index') }}" class="nav-link {{ request()->routeIs('physicalmilestone.index') ? 'active' : '' }}" data-key="t-horizontal">Physical Milestone</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('measurementbook.index') }}" class="nav-link {{ request()->routeIs('measurementbook.index') ? 'active' : '' }}" data-key="t-horizontal">Measurement Book</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
