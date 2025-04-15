@@ -1,24 +1,24 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Masters;
-use App\Models\WorkType;
+
+use App\Models\ProjectPhase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Masters\WorkType\StoreWorkTypeRequest;
-use App\Http\Requests\Admin\Masters\WorkType\UpdateWorkTypeRequest;
-use App\Http\Requests\Admin\Masters\Departments\UpdateDepartmentRequest;
+use App\Http\Controllers\Admin\Controller;
+use App\Http\Requests\Admin\Masters\ProjectPhase\StoreProjectPhaseRequest;
+use App\Http\Requests\Admin\Masters\ProjectPhase\UpdateProjectPhaseRequest;
 
-class WorkTypeController extends Controller
+class ProjectPhaseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $work_types = WorkType::latest()->get();
+        $project_phases = ProjectPhase::latest()->get();
 
-        return view('admin.masters.work_types')->with(['work_types'=> $work_types]);
+        return view('admin.masters.project_phases')->with(['project_phases'=> $project_phases]);
     }
 
     /**
@@ -32,43 +32,41 @@ class WorkTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkTypeRequest $request)
+    public function store(StoreProjectPhaseRequest $request)
     {
         try
         {
             DB::beginTransaction();
             $input = $request->validated();
-            WorkType::create($input);
+            ProjectPhase::create($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Work Type created successfully!']);
+            return response()->json(['success'=> 'Project Phase created successfully!']);
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'creating', 'Work Type');
+            return $this->respondWithAjax($e, 'creating', 'Project Phase');
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(WorkType $workType)
+    public function show(ProjectPhase $projectPhase)
     {
         //
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WorkType $workType)
+    public function edit(ProjectPhase $projectPhase)
     {
-
-        if ($workType)
+        if ($projectPhase)
         {
             $response = [
                 'result' => 1,
-                'work_type' => $workType,
+                'project_phase' => $projectPhase,
             ];
         }
         else
@@ -81,26 +79,26 @@ class WorkTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWorkTypeRequest $request, WorkType $workType)
+    public function update(UpdateProjectPhaseRequest $request, ProjectPhase $projectPhase)
     {
         try
         {
             DB::beginTransaction();
             $input = $request->validated();
-            $workType->update($input);
+            $projectPhase->update($input);
             DB::commit();
-            return response()->json(['success'=> 'Work Type updated successfully!']);
+            return response()->json(['success'=> 'Project Phase updated successfully!']);
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'updating', 'Work Type');
+            return $this->respondWithAjax($e, 'updating', 'Project Phase');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WorkType $workType)
+    public function destroy(ProjectPhase $projectPhase)
     {
         //
     }

@@ -85,6 +85,9 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('measurementbook',App\Http\Controllers\Admin\Masters\MeasurementBookController::class);
     Route::get('workorderdata', [App\Http\Controllers\Admin\Masters\MeasurementBookController::class, 'workorder_data'])->name('workorderdata');
     Route::resource('work_types', App\Http\Controllers\Admin\Masters\WorkTypeController::class);
+    Route::resource('project_phases', App\Http\Controllers\Admin\Masters\ProjectPhaseController::class);
+    Route::resource('standard_schedule_rates', App\Http\Controllers\Admin\Masters\StandardScheduleRateController::class);
+
 
 
 

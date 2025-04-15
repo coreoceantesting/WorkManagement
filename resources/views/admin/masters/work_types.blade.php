@@ -26,8 +26,17 @@
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Work Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
-                                <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" disabled selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid status_err"></span>
+                                </div>
                             </div>
+
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
@@ -35,6 +44,48 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+
+
+        <div class="row" id="editContainer" style="display:none;">
+            <div class="col">
+                <form class="form-horizontal form-bordered" method="post" id="editForm">
+                    @csrf
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Work Type</h4>
+                        </div>
+                        <div class="card-body py-2">
+                            <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
+                            <div class="mb-3 row">
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="name">Work Type Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter Department Name">
+                                    <span class="text-danger is-invalid name_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid initial_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
+                                    <select class="form-control"  name="status">
+                                        <option value="" disabled selected>-- Select Status --</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                    <span class="text-danger is-invalid status_err"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="editSubmit">Update</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -59,6 +110,7 @@
                                         <th>Sr No.</th>
                                         <th>Work Type</th>
                                         <th>Initial</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -68,6 +120,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->name }}</td>
                                             <td>{{ $list->initial }}</td>
+                                            <td>
+                                                @if($list->status == 1)
+                                                    Active
+                                                @else
+                                                    Inactive
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Work" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                              </td>
@@ -94,7 +153,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('work.store') }}',
+            url: '{{ route('work_types.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -105,7 +164,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('work.index') }}';
+                            window.location.href = '{{ route('work_types.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -132,7 +191,7 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('work.edit', ":model_id") }}";
+        var url = "{{ route('work_types.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -144,10 +203,10 @@
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.work.id);
-                    $("#editForm input[name='code']").val(data.work.code);
-                    $("#editForm input[name='name']").val(data.work.name);
-                    $("#editForm input[name='initial']").val(data.work.initial);
+                    $("#editForm input[name='edit_model_id']").val(data.work_type.id);
+                    $("#editForm select[name='status']").val(data.work_type.status);
+                    $("#editForm input[name='name']").val(data.work_type.name);
+                    $("#editForm input[name='initial']").val(data.work_type.initial);
                 }
                 else
                 {
@@ -171,21 +230,19 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('work.update', ":model_id") }}";
-            //
+            var url = "{{ route('work_types.update', ":model_id") }}";
             $.ajax({
                 url: url.replace(':model_id', model_id),
                 type: 'POST',
                 data: formdata,
                 contentType: false,
                 processData: false,
-                success: function(data)
-                {
+                success: function(data){
                     $("#editSubmit").prop('disabled', false);
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('work.index') }}';
+                                window.location.href = '{{ route('work_types.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -202,7 +259,6 @@
                     }
                 }
             });
-
         });
     });
 </script>

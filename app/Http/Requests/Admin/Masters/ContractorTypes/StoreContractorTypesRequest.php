@@ -24,6 +24,7 @@ class StoreContractorTypesRequest extends FormRequest
         return [
             'contractor_type_name' => 'required|unique:contractor_types,contractor_type_name,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
+            'status'  => 'required'
         ];
     }
 }

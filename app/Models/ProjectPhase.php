@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ContractorType extends Model
+class ProjectPhase extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = ['contractor_type_name', 'initial','status'];
-
+    protected $fillable = [
+        'name',
+        'initial',
+        'status',
+        'created_by',
+        'updated_by',
+        'deleted_by',
+    ];
 
     public static function booted()
     {

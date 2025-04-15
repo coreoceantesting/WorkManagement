@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contractor_types', function (Blueprint $table) {
+        Schema::create('project_phases', function (Blueprint $table) {
             $table->id();
-            $table->string('contractor_type_name');
-            $table->string('initial');
+            $table->string('name',100)->nullable();
+            $table->string('initial',100);
             $table->tinyInteger('status')->default(1)->comment('1 = active, 0 = inactive');
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');
@@ -23,11 +23,12 @@ return new class extends Migration
             $table->softDeletes();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('contractor_types');
+        Schema::dropIfExists('project_phases');
     }
 };

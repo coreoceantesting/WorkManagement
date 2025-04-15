@@ -64,24 +64,51 @@
 
                 @can('masters.all')
                     <li class="nav-item">
-                        <a class="nav-link menu-link {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('payment_mode.index') || request()->routeIs('bank.index') || request()->routeIs('deposit_type.index') || request()->routeIs('contract_type.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index') || request()->routeIs('contractor_type.index') || request()->routeIs('sor.index')|| request()->routeIs('cow.index') || request()->routeIs('ratetype.index')|| request()->routeIs('field.index')|| request()->routeIs('budgethead.index')|| request()->routeIs('majorfund.index')|| request()->routeIs('minorfund.index')|| request()->routeIs('work.index')|| request()->routeIs('project.index')|| request()->routeIs('asset.index')|| request()->routeIs('tax.index')|| request()->routeIs('laboratory.index')|| request()->routeIs('bgsd.index')|| request()->routeIs('approvalsanction.index')|| request()->routeIs('tenderentry.index')? 'active' : 'collapsed' }}" href="#masters" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                            <i class="ri-layout-3-line"></i>
-                            <span data-key="t-layouts">Masters</span>
-                        </a>
-                        <div class="collapse menu-dropdown {{ request()->routeIs('wards.index') || request()->routeIs('financial_year.index') || request()->routeIs('payment_mode.index') || request()->routeIs('bank.index') || request()->routeIs('deposit_type.index') || request()->routeIs('contract_type.index') || request()->routeIs('source_of_fund.index') || request()->routeIs('schemes.index') || request()->routeIs('locations.index') || request()->routeIs('departments.index') || request()->routeIs('designation.index') || request()->routeIs('contractor.index') || request()->routeIs('contractor_type.index') || request()->routeIs('sor.index') || request()->routeIs('cow.index') || request()->routeIs('ratetype.index')|| request()->routeIs('field.index')|| request()->routeIs('budgethead.index')|| request()->routeIs('majorfund.index')|| request()->routeIs('minorfund.index')|| request()->routeIs('work.index')|| request()->routeIs('project.index')|| request()->routeIs('asset.index')|| request()->routeIs('tax.index')|| request()->routeIs('laboratory.index')|| request()->routeIs('bgsd.index')| request()->routeIs('approvalsanction.index')|| request()->routeIs('tenderentry.index')? 'show' : '' }}" id="masters">
+                        <a class="nav-link menu-link
+                        {{ request()->routeIs(
+                            'departments.index',
+                            'work_types.index',
+                            'project_phases.index',
+                            'contractor_type.index',
+                            'standard_schedule_rates.index'
+                        ) ? 'active' : 'collapsed' }}"
+                       href="#masters"
+                       data-bs-toggle="collapse"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="sidebarLayouts">
+                             <i class="ri-layout-3-line"></i>
+                                <span data-key="t-layouts">Masters</span>
+                            </a>
+                            <div class="collapse menu-dropdown {{ request()->routeIs(
+                                'departments.index',
+                                'work_types.index',
+                                'project_phases.index',
+                                'contractor_type.index',
+                                'standard_schedule_rates.index'
+                            ) ? 'show' : '' }}" id="masters">
+
+
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Departments</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="{{ route('contractor.index') }}" class="nav-link {{ request()->routeIs('contractor.index') ? 'active' : '' }}" data-key="t-horizontal">Contractor</a>
-                                </li>
-                                {{-- <li class="nav-item">
-                                    <a href="{{ route('deposit_type.index') }}" class="nav-link {{ request()->routeIs('deposit_type.index') ? 'active' : '' }}" data-key="t-horizontal">Deposit Types</a>
+                                    <a href="{{ route('work_types.index') }}" class="nav-link {{ request()->routeIs('work_types.index') ? 'active' : '' }}" data-key="t-horizontal">Work Types</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('ratetype.index') }}" class="nav-link {{ request()->routeIs('ratetype.index') ? 'active' : '' }}" data-key="t-horizontal">SSR </a>
-                                </li>  --}}
+                                    <a href="{{ route('project_phases.index') }}" class="nav-link {{ request()->routeIs('project_phases.index') ? 'active' : '' }}" data-key="t-horizontal">Project Phases</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('contractor_type.index') }}" class="nav-link {{ request()->routeIs('contractor_type.index') ? 'active' : '' }}" data-key="t-horizontal">Contractor Types  </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('standard_schedule_rates.index') }}" class="nav-link {{ request()->routeIs('standard_schedule_rates.index') ? 'active' : '' }}" data-key="t-horizontal">SSR  </a>
+                                </li>
+
+
 
 
                             </ul>

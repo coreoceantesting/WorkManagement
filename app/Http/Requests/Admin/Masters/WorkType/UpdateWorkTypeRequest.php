@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Masters\ContractorTypes;
+namespace App\Http\Requests\Admin\Masters\WorkType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateContractorTypesRequest extends FormRequest
+class UpdateWorkTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class UpdateContractorTypesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contractor_type_name' => "required|unique:contractor_types,contractor_type_name,$this->edit_model_id,id,deleted_at,NULL",
+            'name' => "required|unique:work_types,name,$this->edit_model_id,id,deleted_at,NULL",
             'initial' => 'required',
             'status'  => 'required'
         ];

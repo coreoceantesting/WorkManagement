@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Contractor Types</x-slot>
-    <x-slot name="heading">Contractor Types</x-slot>
+    <x-slot name="title">Standard Schedule Rate</x-slot>
+    <x-slot name="heading">Standard Schedule Rate</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,21 +12,20 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Contractor Types</h4>
+                            <h4 class="card-title">Add Standard Schedule Rate</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_type_name">Contractor Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_type_name" name="contractor_type_name" type="text" placeholder="Enter Contractor Type Name">
-                                    <span class="text-danger is-invalid contractor_type_name_err"></span>
+                                    <label class="col-form-label" for="name">SSR Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter Work Name">
+                                    <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Work Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
-
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
                                     <select class="form-control"  name="status">
@@ -36,6 +35,17 @@
                                     </select>
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid from_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid end_date_err"></span>
+                                </div>
+
                             </div>
 
                         </div>
@@ -49,30 +59,27 @@
         </div>
 
 
-
-        {{-- Edit Form --}}
         <div class="row" id="editContainer" style="display:none;">
             <div class="col">
                 <form class="form-horizontal form-bordered" method="post" id="editForm">
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Department</h4>
+                            <h4 class="card-title">Edit Standard Schedule Rate</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_type_name">Contractor Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_type_name" name="contractor_type_name" type="text" placeholder="Enter Contractor Type Name">
-                                    <span class="text-danger is-invalid contractor_type_name_err"></span>
+                                    <label class="col-form-label" for="name">SSR Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter Department Name">
+                                    <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
-
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
                                     <select class="form-control"  name="status">
@@ -82,8 +89,18 @@
                                     </select>
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
-                            </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid from_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid end_date_err"></span>
+                                </div>
 
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-primary" id="editSubmit">Update</button>
@@ -93,7 +110,6 @@
                 </form>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-lg-12">
@@ -114,18 +130,22 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Contractor Type Name</th>
+                                        <th>Project Phase</th>
                                         <th>Initial</th>
+                                        <th>From Date</th>
+                                        <th>End Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($contractorsTypesList as $list)
+                                    @foreach ($ssr_list as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->contractor_type_name }}</td>
+                                            <td>{{ $list->name }}</td>
                                             <td>{{ $list->initial }}</td>
+                                            <td>{{ $list->from_date }}</td>
+                                            <td>{{ $list->end_date }}</td>
                                             <td>
                                                 @if($list->status == 1)
                                                     Active
@@ -134,7 +154,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Contractor Type" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Work" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                              </td>
                                         </tr>
                                     @endforeach
@@ -159,7 +179,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('contractor_type.store') }}',
+            url: '{{ route('standard_schedule_rates.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -170,7 +190,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('contractor_type.index') }}';
+                            window.location.href = '{{ route('standard_schedule_rates.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -197,22 +217,22 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('contractor_type.edit', ":model_id") }}";
+        var url = "{{ route('standard_schedule_rates.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
             type: 'GET',
-            data: {
-                '_token': "{{ csrf_token() }}"
-            },
+
             success: function(data, textStatus, jqXHR) {
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.contractorType.id);
-                    $("#editForm input[name='contractor_type_name']").val(data.contractorType.contractor_type_name);
-                    $("#editForm input[name='initial']").val(data.contractorType.initial);
-                    $("#editForm select[name='status']").val(data.contractorType.status);
+                    $("#editForm input[name='edit_model_id']").val(data.standard_schedule_rates.id);
+                    $("#editForm select[name='status']").val(data.standard_schedule_rates.status);
+                    $("#editForm input[name='name']").val(data.standard_schedule_rates.name);
+                    $("#editForm input[name='initial']").val(data.standard_schedule_rates.initial);
+                    $("#editForm input[name='from_date']").val(data.standard_schedule_rates.from_date);
+                    $("#editForm input[name='end_date']").val(data.standard_schedule_rates.end_date);
                 }
                 else
                 {
@@ -236,21 +256,19 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('contractor_type.update', ":model_id") }}";
-            //
+            var url = "{{ route('standard_schedule_rates.update', ":model_id") }}";
             $.ajax({
                 url: url.replace(':model_id', model_id),
                 type: 'POST',
                 data: formdata,
                 contentType: false,
                 processData: false,
-                success: function(data)
-                {
+                success: function(data){
                     $("#editSubmit").prop('disabled', false);
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('contractor_type.index') }}';
+                                window.location.href = '{{ route('standard_schedule_rates.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -267,7 +285,6 @@
                     }
                 }
             });
-
         });
     });
 </script>
@@ -278,7 +295,7 @@
     $("#buttons-datatables").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
-            title: "Are you sure to delete this contractor type?",
+            title: "Are you sure to delete this Work ?",
             // text: "Make sure if you have filled Vendor details before proceeding further",
             icon: "info",
             buttons: ["Cancel", "Confirm"]
@@ -288,7 +305,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('contractor_type.destroy', ":model_id") }}";
+                var url = "{{ route('work.destroy', ":model_id") }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),
@@ -319,3 +336,4 @@
         });
     });
 </script>
+
