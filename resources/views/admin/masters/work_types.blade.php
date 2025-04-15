@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Departments</x-slot>
-    <x-slot name="heading">Departments</x-slot>
+    <x-slot name="title">Work Types</x-slot>
+    <x-slot name="heading">Work Types</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,31 +12,22 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Department</h4>
+                            <h4 class="card-title">Add Work Type</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
-                                    <span class="text-danger is-invalid department_name_err"></span>
+                                    <label class="col-form-label" for="name">Work Type Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter Work Name">
+                                    <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Work Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
-                                    <select class="form-control"  name="status">
-                                        <option value="" selected>-- Select Status --</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
-                                    <span class="text-danger is-invalid status_err"></span>
-                                </div>
+                                <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             </div>
-
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
@@ -46,52 +37,6 @@
                 </div>
             </div>
         </div>
-
-
-
-        {{-- Edit Form --}}
-        <div class="row" id="editContainer" style="display:none;">
-            <div class="col">
-                <form class="form-horizontal form-bordered" method="post" id="editForm">
-                    @csrf
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Edit Department</h4>
-                        </div>
-                        <div class="card-body py-2">
-                            <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
-                            <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
-                                    <span class="text-danger is-invalid department_name_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
-                                    <select class="form-control"  name="status">
-                                        <option value="" disabled selected>-- Select Status --</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
-                                    <span class="text-danger is-invalid title_err"></span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary" id="editSubmit">Update</button>
-                            <button type="reset" class="btn btn-warning">Reset</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
 
         <div class="row">
             <div class="col-lg-12">
@@ -112,29 +57,20 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Department Name</th>
+                                        <th>Work Type</th>
                                         <th>Initial</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($departmentsList as $list)
+                                    @foreach ($work_types as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->department_name }}</td>
+                                            <td>{{ $list->name }}</td>
                                             <td>{{ $list->initial }}</td>
                                             <td>
-                                                @if($list->status == 1)
-                                                    Active
-                                                @else
-                                                    Inactive
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Department" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
-                                                {{-- <button class="btn text-danger rem-element px-2 py-1" title="Delete Department" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button> --}}
-                                            </td>
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Work" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
+                                             </td>
                                         </tr>
                                     @endforeach
                             </table>
@@ -158,7 +94,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('departments.store') }}',
+            url: '{{ route('work.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -169,7 +105,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('departments.index') }}';
+                            window.location.href = '{{ route('work.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -196,7 +132,7 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('departments.edit', ":model_id") }}";
+        var url = "{{ route('work.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -208,10 +144,10 @@
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.department.id);
-                    $("#editForm input[name='department_name']").val(data.department.department_name);
-                    $("#editForm input[name='initial']").val(data.department.initial);
-                    $("#editForm select[name='status']").val(data.department.status);
+                    $("#editForm input[name='edit_model_id']").val(data.work.id);
+                    $("#editForm input[name='code']").val(data.work.code);
+                    $("#editForm input[name='name']").val(data.work.name);
+                    $("#editForm input[name='initial']").val(data.work.initial);
                 }
                 else
                 {
@@ -235,7 +171,7 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('departments.update', ":model_id") }}";
+            var url = "{{ route('work.update', ":model_id") }}";
             //
             $.ajax({
                 url: url.replace(':model_id', model_id),
@@ -249,7 +185,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('departments.index') }}';
+                                window.location.href = '{{ route('work.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -277,7 +213,7 @@
     $("#buttons-datatables").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
-            title: "Are you sure to delete this Department?",
+            title: "Are you sure to delete this Work ?",
             // text: "Make sure if you have filled Vendor details before proceeding further",
             icon: "info",
             buttons: ["Cancel", "Confirm"]
@@ -287,7 +223,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('departments.destroy', ":model_id") }}";
+                var url = "{{ route('work.destroy', ":model_id") }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),
@@ -318,3 +254,4 @@
         });
     });
 </script>
+

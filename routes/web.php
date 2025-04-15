@@ -61,7 +61,7 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('sor', App\Http\Controllers\Admin\Masters\SORController::class);
     Route::resource('cow', App\Http\Controllers\Admin\Masters\COWController::class);
     Route::resource('ratetype', App\Http\Controllers\Admin\Masters\RateTypeController::class);
-    Route::post('/import',[App\Http\Controllers\Admin\Masters\RateTypeController::class,'import'])->name('import'); 
+    Route::post('/import',[App\Http\Controllers\Admin\Masters\RateTypeController::class,'import'])->name('import');
     Route::resource('field', App\Http\Controllers\Admin\Masters\FieldController::class);
     Route::resource('budgethead', App\Http\Controllers\Admin\Masters\BudgetHeadController::class);
     Route::resource('majorfund', App\Http\Controllers\Admin\Masters\Fund\MajorFundController::class);
@@ -84,7 +84,8 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('physicalmilestone',App\Http\Controllers\Admin\Masters\PhysicalMilestoneController::class);
     Route::resource('measurementbook',App\Http\Controllers\Admin\Masters\MeasurementBookController::class);
     Route::get('workorderdata', [App\Http\Controllers\Admin\Masters\MeasurementBookController::class, 'workorder_data'])->name('workorderdata');
-    
+    Route::resource('work_types', App\Http\Controllers\Admin\Masters\WorkTypeController::class);
+
 
 
     //prefix

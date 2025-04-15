@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Vendors</x-slot>
-    <x-slot name="heading">Vendors</x-slot>
+    <x-slot name="title">Contractors</x-slot>
+    <x-slot name="heading">Contractors</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Vendors</h4>
+                            <h4 class="card-title">Add Contractor</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
@@ -56,7 +56,7 @@
                                     <input class="form-control" id="ifsccode" name="ifsccode" type="text" placeholder="Enter IESC Code">
                                     <span class="text-danger is-invalid ifsccode_err"></span>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="address">Vendor Address<span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
@@ -98,7 +98,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Vendor</h4>
+                            <h4 class="card-title">Edit Contractor</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
@@ -143,7 +143,7 @@
                                     <input class="form-control" id="ifsccode" name="ifsccode" type="text" placeholder="Enter IESC Code">
                                     <span class="text-danger is-invalid ifsccode_err"></span>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="address">Vendor Address<span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
