@@ -19,7 +19,7 @@ class ContractorTypesController extends Controller
     {
         $contractorsTypesList = ContractorType::latest()->get();
 
-        return view('admin.masters.contractorTypes')->with(['contractorsTypesList'=> $contractorsTypesList]);
+        return view('admin.masters.contractor_types')->with(['contractorsTypesList'=> $contractorsTypesList]);
     }
 
     /**

@@ -19,7 +19,7 @@ class ContractorSubTypeController extends Controller
     {
         $contractorSubTypeList = ContractorSubType::with('contractor_type')->latest()->get();
         $contractorType = ContractorType::latest()->get();
-        return view('admin.masters.contractorSubTypes')->with([
+        return view('admin.masters.contractor_sub_types')->with([
             'contractor_sub_type_list'=> $contractorSubTypeList,
             'contractor_type'=>$contractorType
         ]);

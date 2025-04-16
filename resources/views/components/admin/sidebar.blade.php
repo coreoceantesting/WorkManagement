@@ -71,7 +71,12 @@
                         'contractor_type.index',
                         'standard_schedule_rates.index',
                         'contractor_sub_types.index',
-                        'units.index'
+                        'units.index',
+                        'item_categories.index',
+                        'item_sub_categories.index',
+                        'items.index'
+
+
                     ];
 
                     $isMasterActive = request()->routeIs(...$mastersRoutes);
@@ -112,6 +117,15 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('standard_schedule_rates.index') }}" class="nav-link {{ request()->routeIs('standard_schedule_rates.index') ? 'active' : '' }}" data-key="t-horizontal">SSR  </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('item_categories.index') }}" class="nav-link {{ request()->routeIs('item_categories.index') ? 'active' : '' }}" data-key="t-horizontal">Item Categories  </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('item_sub_categories.index') }}" class="nav-link {{ request()->routeIs('item_sub_categories.index') ? 'active' : '' }}" data-key="t-horizontal">Item Sub Categories  </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('items.index') }}" class="nav-link {{ request()->routeIs('items.index') ? 'active' : '' }}" data-key="t-horizontal">Items  </a>
                                 </li>
 
                             </ul>
