@@ -27,7 +27,7 @@
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label" for="item_sub_categories">Item Category <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
                                     <select class="form-control select2" id="item_category_id" name="item_category_id">
                                         <option value="">Select Item Category</option>

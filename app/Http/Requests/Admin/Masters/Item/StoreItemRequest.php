@@ -22,9 +22,21 @@ class StoreItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:item_categories,name,NULL,NULL,deleted_at,NULL',
+            'description' => 'required|unique:items,description,NULL,NULL,deleted_at,NULL',
             'initial' => 'required',
+            'item_category_id' => 'required',
+            'item_sub_category_id' => 'required',
+            'rate' => 'required|numeric',
             'status'  => 'required'
+        ];
+    }
+
+
+    public function messages(): array
+    {
+        return [
+            'item_category_id.required' => 'Please select a item category.',
+            'item_sub_category_id.required' => 'Please select a sub item category.',
         ];
     }
 }

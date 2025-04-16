@@ -100,4 +100,18 @@ class ItemCategoryController extends Controller
     {
         //
     }
+
+
+    public function subCategories(ItemCategory $itemCategory)
+    {
+        $response = [
+            'result' => 1,
+            'itemSubCategory' => $itemCategory->sub_categories??[],
+        ];
+
+        return $response;
+    }
+
+
+
 }

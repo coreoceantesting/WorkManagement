@@ -21,6 +21,10 @@ class ItemSubCategory extends Model
         return $this->belongsTo(ItemCategory::class,'item_category_id','id');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
     public static function booted()
     {
         static::created(function (self $user)

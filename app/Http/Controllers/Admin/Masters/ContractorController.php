@@ -21,7 +21,7 @@ class ContractorController extends Controller
     public function index()
     {
         $contractorsList = Contractor::latest()->get();
-
+        dd( $contractorsList);
         return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList]);
         // $contractorsList = Contractor::join('contractor_types', 'contractors.contractor_type', '=', 'contractor_types.id')
         // ->select('contractors.*', 'contractor_types.contractor_type_name')

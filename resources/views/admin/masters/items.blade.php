@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Contractor Types</x-slot>
-    <x-slot name="heading">Contractor Types</x-slot>
+    <x-slot name="title">Items</x-slot>
+    <x-slot name="heading">Items</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,22 +12,49 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Contractor Types</h4>
+                            <h4 class="card-title">Add Items</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_type_name">Contractor Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_type_name" name="contractor_type_name" type="text" placeholder="Enter Contractor Type Name">
-                                    <span class="text-danger is-invalid contractor_type_name_err"></span>
+                                <div class="col-md-6">
+                                    <label class="col-form-label" for="description">Item Description <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="description" name="description" placeholder="Enter Item Description" rows="4"></textarea>
+
+                                    <span class="text-danger is-invalid description_err"></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Rate (Rs) <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="rate" name="rate" type="number" placeholder="Enter rate">
+                                    <span class="text-danger is-invalid rate_err"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
-                                <div class="col-md-4">
+                                    <select class="form-control select2" id="item_category_id" name="item_category_id" onchange="fetchItemSubCategory(this,'#item_sub_category_id')">
+                                        <option value="">Select Item Category</option>
+                                        @foreach($item_categories as $type)
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <span class="text-danger is-invalid item_category_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="item_sub_category_id">Item Sub Category <span class="text-danger">*</span></label>
+
+                                    <select class="form-control select2" id="item_sub_category_id" name="item_sub_category_id">
+                                        <option value="">Select Sub Item Category</option>
+
+                                    </select>
+
+                                    <span class="text-danger is-invalid item_sub_category_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
                                     <select class="form-control"  name="status">
                                         <option value="" disabled selected>-- Select Status --</option>
@@ -37,7 +64,6 @@
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
                             </div>
-
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
@@ -59,21 +85,51 @@
                         <div class="card-header">
                             <h4 class="card-title">Edit Department</h4>
                         </div>
-                        <div class="card-body py-2">
+
+
+                        <div class="card-body">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
+
                             <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="contractor_type_name">Contractor Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="contractor_type_name" name="contractor_type_name" type="text" placeholder="Enter Contractor Type Name">
-                                    <span class="text-danger is-invalid contractor_type_name_err"></span>
+                                <div class="col-md-6">
+                                    <label class="col-form-label" for="description">Item Description <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="description" name="description" placeholder="Enter Item Description" rows="4"></textarea>
+
+                                    <span class="text-danger is-invalid description_err"></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Rate (Rs) <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="rate" name="rate" type="number" placeholder="Enter rate">
+                                    <span class="text-danger is-invalid rate_err"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
-                                <div class="col-md-4">
+                                    <select class="form-control select2" id="item_category_id" name="item_category_id" onchange="fetchItemSubCategory(this,'#item_sub_category_id_edit')">
+                                        <option value="">Select Item Category</option>
+                                        @foreach($item_categories as $type)
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <span class="text-danger is-invalid item_category_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="item_sub_category_id_edit">Item Sub Category <span class="text-danger">*</span></label>
+
+                                    <select class="form-control select2" id="item_sub_category_id_edit" name="item_sub_category_id">
+                                        <option value="">Select Sub Item Category</option>
+
+                                    </select>
+
+                                    <span class="text-danger is-invalid item_sub_category_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
                                     <select class="form-control"  name="status">
                                         <option value="" disabled selected>-- Select Status --</option>
@@ -83,13 +139,14 @@
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
                             </div>
-
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-primary" id="editSubmit">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </div>
+
+
                 </form>
             </div>
         </div>
@@ -114,17 +171,17 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Contractor Type Name</th>
+                                        <th>Item Description</th>
                                         <th>Initial</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($contractorsTypesList as $list)
+                                    @foreach ($items as $list)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->contractor_type_name }}</td>
+                                            <td>{{ $list->description }}</td>
                                             <td>{{ $list->initial }}</td>
                                             <td>
                                                 @if($list->status == 1)
@@ -134,7 +191,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Contractor Type" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Item" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
                                              </td>
                                         </tr>
                                     @endforeach
@@ -159,7 +216,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('contractor_type.store') }}',
+            url: '{{ route('items.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -170,7 +227,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('contractor_type.index') }}';
+                            window.location.href = '{{ route('items.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -197,7 +254,7 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('contractor_type.edit', ":model_id") }}";
+        var url = "{{ route('items.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -209,10 +266,21 @@
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.contractorType.id);
-                    $("#editForm input[name='contractor_type_name']").val(data.contractorType.contractor_type_name);
-                    $("#editForm input[name='initial']").val(data.contractorType.initial);
-                    $("#editForm select[name='status']").val(data.contractorType.status);
+                    $("#editForm input[name='edit_model_id']").val(data.item.id);
+                    $("#editForm textarea[name='description']").html(data.item.description);
+                    $("#editForm input[name='initial']").val(data.item.initial);
+                    $("#editForm input[name='rate']").val(data.item.rate);
+                    $("#editForm select[name='item_category_id']")
+                        .val(data.item.item_category_id)
+                        .change();
+
+                    fetchItemSubCategory(
+                        "#editForm select[name='item_category_id']",
+                        "#editForm select[name='item_sub_category_id']",
+                        data.item.item_sub_category_id
+                    );
+
+                    $("#editForm select[name='status']").val(data.item.status);
                 }
                 else
                 {
@@ -230,13 +298,14 @@
 <!-- Update -->
 <script>
     $(document).ready(function() {
+        $('.select2').select2();
         $("#editForm").submit(function(e) {
             e.preventDefault();
             $("#editSubmit").prop('disabled', true);
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('contractor_type.update', ":model_id") }}";
+            var url = "{{ route('items.update', ":model_id") }}";
             //
             $.ajax({
                 url: url.replace(':model_id', model_id),
@@ -250,7 +319,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('contractor_type.index') }}';
+                                window.location.href = '{{ route('items.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -278,7 +347,7 @@
     $("#buttons-datatables").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
-            title: "Are you sure to delete this contractor type?",
+            title: "Are you sure to delete this Item?",
             // text: "Make sure if you have filled Vendor details before proceeding further",
             icon: "info",
             buttons: ["Cancel", "Confirm"]
@@ -288,7 +357,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('contractor_type.destroy', ":model_id") }}";
+                var url = "{{ route('items.destroy', ":model_id") }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),
@@ -318,4 +387,44 @@
             }
         });
     });
+    function fetchItemSubCategory(category_element, sub_category_element, selected_sub_id = null) {
+    var category_id = $(category_element).val();
+
+    if (!category_id) {
+        $(sub_category_element).html('<option value="">Select Sub Item Category</option>');
+        return;
+    }
+
+    // Show loading
+    $(sub_category_element).html('<option value="">Loading Sub Item Category...</option>');
+
+    // Generate URL dynamically
+    var url = "{{ route('item_categories.sub_categories', ':category_id') }}";
+    url = url.replace(':category_id', category_id);
+
+    // AJAX request to fetch sub categories
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data) {
+            $(sub_category_element).empty();
+            $(sub_category_element).append('<option value="">Select Sub Item Category</option>');
+
+            if (data.itemSubCategory && data.itemSubCategory.length) {
+                data.itemSubCategory.forEach(function(item) {
+                    var selected = selected_sub_id == item.id ? 'selected' : '';
+                    $(sub_category_element).append(
+                        `<option value="${item.id}" ${selected}>${item.name}</option>`
+                    );
+                });
+            } else {
+                $(sub_category_element).append('<option value="">No Sub Categories Found</option>');
+            }
+        },
+        error: function() {
+            alert("Something went wrong while fetching sub categories.");
+        },
+    });
+}
+
 </script>

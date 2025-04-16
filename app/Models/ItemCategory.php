@@ -20,6 +20,9 @@ class ItemCategory extends Model
         'deleted_by',
     ];
 
+    public function sub_categories(){
+        return $this->hasMany(ItemSubCategory::class)->active();
+    }
     public static function booted()
     {
         static::created(function (self $user)

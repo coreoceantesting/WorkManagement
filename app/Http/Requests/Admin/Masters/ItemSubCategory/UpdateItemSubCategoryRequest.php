@@ -28,4 +28,11 @@ class UpdateItemSubCategoryRequest extends FormRequest
             'status'  => 'required'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'item_category_id.required' => 'Please select a item category.',
+        ];
+    }
 }
