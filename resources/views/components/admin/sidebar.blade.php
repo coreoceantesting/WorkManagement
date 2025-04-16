@@ -63,16 +63,22 @@
                 @endcan
 
                 @can('masters.all')
+                @php
+                    $mastersRoutes = [
+                        'departments.index',
+                        'work_types.index',
+                        'project_phases.index',
+                        'contractor_type.index',
+                        'standard_schedule_rates.index',
+                        'contractor_sub_types.index',
+                        'units.index'
+                    ];
+
+                    $isMasterActive = request()->routeIs(...$mastersRoutes);
+                @endphp
                     <li class="nav-item">
                         <a class="nav-link menu-link
-                        {{ request()->routeIs(
-                            'departments.index',
-                            'work_types.index',
-                            'project_phases.index',
-                            'contractor_type.index',
-                            'standard_schedule_rates.index',
-                             'contractor_sub_types.index',
-                        ) ? 'active' : 'collapsed' }}"
+                      {{ $isMasterActive ? 'active' : 'collapsed' }}"
                        href="#masters"
                        data-bs-toggle="collapse"
                        role="button"
@@ -81,21 +87,16 @@
                              <i class="ri-layout-3-line"></i>
                                 <span data-key="t-layouts">Masters</span>
                             </a>
-                            <div class="collapse menu-dropdown {{ request()->routeIs(
-                                'departments.index',
-                                'work_types.index',
-                                'project_phases.index',
-                                'contractor_type.index',
-                                'standard_schedule_rates.index',
-                                'contractor_sub_types.index'
-                            ) ? 'show' : '' }}" id="masters">
+                            <div class="collapse menu-dropdown {{ $isMasterActive ? 'show' : '' }}" id="masters">
 
 
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Departments</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('units.index') }}" class="nav-link {{ request()->routeIs('units.index') ? 'active' : '' }}" data-key="t-horizontal">Units</a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('work_types.index') }}" class="nav-link {{ request()->routeIs('work_types.index') ? 'active' : '' }}" data-key="t-horizontal">Work Types</a>
                                 </li>
