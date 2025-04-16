@@ -70,7 +70,8 @@
                             'work_types.index',
                             'project_phases.index',
                             'contractor_type.index',
-                            'standard_schedule_rates.index'
+                            'standard_schedule_rates.index',
+                             'contractor_sub_types.index',
                         ) ? 'active' : 'collapsed' }}"
                        href="#masters"
                        data-bs-toggle="collapse"
@@ -85,7 +86,8 @@
                                 'work_types.index',
                                 'project_phases.index',
                                 'contractor_type.index',
-                                'standard_schedule_rates.index'
+                                'standard_schedule_rates.index',
+                                'contractor_sub_types.index'
                             ) ? 'show' : '' }}" id="masters">
 
 
@@ -105,11 +107,11 @@
                                     <a href="{{ route('contractor_type.index') }}" class="nav-link {{ request()->routeIs('contractor_type.index') ? 'active' : '' }}" data-key="t-horizontal">Contractor Types  </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('contractor_sub_types.index') }}" class="nav-link {{ request()->routeIs('contractor_sub_types.index') ? 'active' : '' }}" data-key="t-horizontal">Contractor Sub Types </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('standard_schedule_rates.index') }}" class="nav-link {{ request()->routeIs('standard_schedule_rates.index') ? 'active' : '' }}" data-key="t-horizontal">SSR  </a>
                                 </li>
-
-
-
 
                             </ul>
                         </div>

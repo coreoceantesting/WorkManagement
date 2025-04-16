@@ -87,6 +87,8 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('work_types', App\Http\Controllers\Admin\Masters\WorkTypeController::class);
     Route::resource('project_phases', App\Http\Controllers\Admin\Masters\ProjectPhaseController::class);
     Route::resource('standard_schedule_rates', App\Http\Controllers\Admin\Masters\StandardScheduleRateController::class);
+    Route::resource('contractor_sub_types', App\Http\Controllers\Admin\Masters\ContractorSubTypeController::class);
+    Route::resource('units', App\Http\Controllers\Admin\Masters\UnitController::class);
 
 
 
