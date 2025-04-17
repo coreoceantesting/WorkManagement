@@ -9,18 +9,65 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\Masters\Item\StoreItemRequest;
 use App\Http\Requests\Admin\Masters\Item\UpdateItemRequest;
+use App\Models\Unit;
 
 class ItemController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $itemSubCategory = ItemSubCategory::latest()->get();
-        $items = Item::latest()->get();
+        if ($request->ajax()) {
+            $items = Item::query();
+
+            // Optional search
+            if ($search = $request->input('search.value')) {
+                $items = $items->where('description', 'like', "%{$search}%")
+                            ->orWhere('initial', 'like', "%{$search}%");
+            }
+
+            $total = $items->count();
+
+            $columns = ['id', 'description', 'initial', 'status'];
+            $orderCol = $request->input('order.0.column', 0);
+            $orderDir = $request->input('order.0.dir', 'desc');
+            $orderBy = $columns[$orderCol];
+
+            $items = $items->orderBy($orderBy, $orderDir)
+                        ->skip($request->start)
+                        ->take($request->length)
+                        ->get();
+
+            $data = [];
+            foreach ($items as $index => $item) {
+                $data[] = [
+                    'DT_RowIndex' => $request->start + $index + 1,
+                    'description' => $item->description,
+                    'initial' => $item->initial,
+                    'status' => $item->status ? 'Active' : 'Inactive',
+                    'action' => '<button class="edit-element btn text-secondary px-2 py-1" title="Edit Item" data-id="' . $item->id . '"><i data-feather="edit"></i></button>',
+                ];
+            }
+
+            return response()->json([
+                'draw' => intval($request->input('draw')),
+                'recordsTotal' => $total,
+                'recordsFiltered' => $total,
+                'data' => $data,
+            ]);
+        }
+
+
+        $itemSubCategory = ItemSubCategory::latest()->active()->get();
+        $units = Unit::latest()->active()->get();
         return view('admin.masters.items')->with([
-            'items'=> $items,
+            'units'=>$units,
             'item_categories'=>$itemSubCategory
         ]);
     }
@@ -93,7 +140,7 @@ class ItemController extends Controller
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'updating', 'Item Category');
+            return $this->respondWithAjax($e, 'updating', 'Item ');
         }
     }
 

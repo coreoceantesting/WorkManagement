@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\Masters\StandardScheduleRate\UpdateStandardScheduleR
 
 class StandardScheduleRateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */

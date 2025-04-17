@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class ContractorTypesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -111,5 +115,16 @@ class ContractorTypesController extends Controller
         {
             return $this->respondWithAjax($e, 'deleting', 'Contractor Type');
         }
+    }
+
+
+    public function subContractorType(ContractorType $contractorType)
+    {
+        $response = [
+            'result' => 1,
+            'contractorSubTypes' => $contractorType->contractor_sub_types??[],
+        ];
+
+        return $response;
     }
 }

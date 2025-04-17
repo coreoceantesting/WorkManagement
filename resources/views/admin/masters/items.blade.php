@@ -32,6 +32,17 @@
                                     <input class="form-control" id="rate" name="rate" type="number" placeholder="Enter rate">
                                     <span class="text-danger is-invalid rate_err"></span>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="unit_id">Unit <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="unit_id" name="unit_id">
+                                        <option value="">Select Unit</option>
+                                        @foreach($units as $unit)
+                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid unit_id_err"></span>
+                                </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
@@ -108,6 +119,16 @@
                                     <span class="text-danger is-invalid rate_err"></span>
                                 </div>
                                 <div class="col-md-3">
+                                    <label class="col-form-label" for="unit_id">Unit <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="unit_id" name="unit_id">
+                                        <option value="">Select Unit</option>
+                                        @foreach($units as $unit)
+                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid unit_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
                                     <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
                                     <select class="form-control select2" id="item_category_id" name="item_category_id" onchange="fetchItemSubCategory(this,'#item_sub_category_id_edit')">
@@ -167,7 +188,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="buttons-datatables" class="table table-bordered nowrap align-middle" style="width:100%">
+                            <table id="datatable" class="table table-bordered nowrap align-middle" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
@@ -177,25 +198,8 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($items as $list)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $list->description }}</td>
-                                            <td>{{ $list->initial }}</td>
-                                            <td>
-                                                @if($list->status == 1)
-                                                    Active
-                                                @else
-                                                    Inactive
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit Item" data-id="{{ $list->id }}"><i data-feather="edit"></i></button>
-                                             </td>
-                                        </tr>
-                                    @endforeach
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -210,6 +214,36 @@
 
 {{-- Add --}}
 <script>
+
+    $('#datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route("items.index") }}', // Make sure route matches
+            dom: "Blfrtip",
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'Items List',
+                    exportOptions: { columns: [0, 1, 2, 3] }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'Items List',
+                    exportOptions: { columns: [0, 1, 2, 3] }
+                },
+                'copy', 'csv', 'print'
+            ],
+            columns: [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'description', name: 'description' },
+                { data: 'initial', name: 'initial' },
+                { data: 'status', name: 'status' },
+                { data: 'action', name: 'action', orderable: false, searchable: false }
+            ],
+            drawCallback: function () {
+                feather.replace(); // Refresh feather icons
+            }
+    });
     $("#addForm").submit(function(e) {
         e.preventDefault();
         $("#addSubmit").prop('disabled', true);
@@ -251,7 +285,7 @@
 
 <!-- Edit -->
 <script>
-    $("#buttons-datatables").on("click", ".edit-element", function(e) {
+    $("#datatable").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
         var url = "{{ route('items.edit', ":model_id") }}";
@@ -279,6 +313,11 @@
                         "#editForm select[name='item_sub_category_id']",
                         data.item.item_sub_category_id
                     );
+
+                    $("#editForm select[name='unit_id']")
+                        .val(data.item.unit_id)
+                        .change();
+
 
                     $("#editForm select[name='status']").val(data.item.status);
                 }
@@ -344,7 +383,7 @@
 
 <!-- Delete -->
 <script>
-    $("#buttons-datatables").on("click", ".rem-element", function(e) {
+    $("#datatable").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
             title: "Are you sure to delete this Item?",
@@ -388,43 +427,43 @@
         });
     });
     function fetchItemSubCategory(category_element, sub_category_element, selected_sub_id = null) {
-    var category_id = $(category_element).val();
+        var category_id = $(category_element).val();
 
-    if (!category_id) {
-        $(sub_category_element).html('<option value="">Select Sub Item Category</option>');
-        return;
+        if (!category_id) {
+            $(sub_category_element).html('<option value="">Select Sub Item Category</option>');
+            return;
+        }
+
+        // Show loading
+        $(sub_category_element).html('<option value="">Loading Sub Item Category...</option>');
+
+        // Generate URL dynamically
+        var url = "{{ route('item_categories.sub_categories', ':category_id') }}";
+        url = url.replace(':category_id', category_id);
+
+        // AJAX request to fetch sub categories
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(data) {
+                $(sub_category_element).empty();
+                $(sub_category_element).append('<option value="">Select Sub Item Category</option>');
+
+                if (data.itemSubCategory && data.itemSubCategory.length) {
+                    data.itemSubCategory.forEach(function(item) {
+                        var selected = selected_sub_id == item.id ? 'selected' : '';
+                        $(sub_category_element).append(
+                            `<option value="${item.id}" ${selected}>${item.name}</option>`
+                        );
+                    });
+                } else {
+                    // $(sub_category_element).append('<option value="">No Sub Categories Found</option>');
+                }
+            },
+            error: function() {
+                alert("Something went wrong while fetching sub categories.");
+            },
+        });
     }
-
-    // Show loading
-    $(sub_category_element).html('<option value="">Loading Sub Item Category...</option>');
-
-    // Generate URL dynamically
-    var url = "{{ route('item_categories.sub_categories', ':category_id') }}";
-    url = url.replace(':category_id', category_id);
-
-    // AJAX request to fetch sub categories
-    $.ajax({
-        url: url,
-        type: 'GET',
-        success: function(data) {
-            $(sub_category_element).empty();
-            $(sub_category_element).append('<option value="">Select Sub Item Category</option>');
-
-            if (data.itemSubCategory && data.itemSubCategory.length) {
-                data.itemSubCategory.forEach(function(item) {
-                    var selected = selected_sub_id == item.id ? 'selected' : '';
-                    $(sub_category_element).append(
-                        `<option value="${item.id}" ${selected}>${item.name}</option>`
-                    );
-                });
-            } else {
-                $(sub_category_element).append('<option value="">No Sub Categories Found</option>');
-            }
-        },
-        error: function() {
-            alert("Something went wrong while fetching sub categories.");
-        },
-    });
-}
 
 </script>

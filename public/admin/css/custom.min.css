@@ -36,6 +36,47 @@
     width: 16px;
 }
 
+
+
+
+#datatable_wrapper .dt-buttons button{
+    border: 1px solid #eee;
+    background-color: #8c68cd;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+#datatable_wrapper .dt-buttons button:hover{
+    background-color: #7758ae;
+}
+
+#datatable_wrapper .dt-buttons{
+    float: right !important;
+    margin-bottom: 10px;
+}
+
+#datatable_wrapper #datatable_paginate{
+    float: right !important;
+    margin-top: -20px;
+}
+
+#datatable_wrapper #datatable_filter{
+    margin-left: 15px;
+    display: inline-flex;
+}
+
+#datatable_wrapper #datatable_length{
+    float: left;
+    display: flex;
+}
+
+#datatable_wrapper tbody button svg{
+    height: 16px;
+    width: 16px;
+}
+
 .roles-checkbox-group .form-check{
     padding-left: 35px !important;
 }

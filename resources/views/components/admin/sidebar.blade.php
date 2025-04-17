@@ -74,7 +74,8 @@
                         'units.index',
                         'item_categories.index',
                         'item_sub_categories.index',
-                        'items.index'
+                        'items.index',
+                        'contractors.index'
 
 
                     ];
@@ -126,6 +127,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('items.index') }}" class="nav-link {{ request()->routeIs('items.index') ? 'active' : '' }}" data-key="t-horizontal">Items  </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('contractors.index') }}" class="nav-link {{ request()->routeIs('contractors.index') ? 'active' : '' }}" data-key="t-horizontal">Contractors  </a>
                                 </li>
 
                             </ul>

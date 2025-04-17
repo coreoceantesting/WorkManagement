@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\Masters\Unit\UpdateUnitRequest;
 
 class UnitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */

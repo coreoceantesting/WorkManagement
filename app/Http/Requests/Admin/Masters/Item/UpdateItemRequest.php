@@ -27,6 +27,7 @@ class UpdateItemRequest extends FormRequest
             'item_category_id' => 'required',
             'item_sub_category_id' => 'required',
             'rate' => 'required|numeric',
+            'unit_id' => 'required',
             'status'  => 'required'
         ];
     }
@@ -36,6 +37,7 @@ class UpdateItemRequest extends FormRequest
         return [
             'item_category_id.required' => 'Please select a item category.',
             'item_sub_category_id.required' => 'Please select a sub item category.',
+            'unit_id' => 'Please select a unit.',
         ];
     }
 }

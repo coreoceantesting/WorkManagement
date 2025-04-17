@@ -20,6 +20,11 @@ class Unit extends Model
         'deleted_by',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public static function booted()
     {
         static::created(function (self $user)

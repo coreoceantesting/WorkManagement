@@ -12,6 +12,10 @@ use App\Http\Requests\Admin\Masters\ContractorSubTypes\UpdateContractorSubTypesR
 
 class ContractorSubTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */

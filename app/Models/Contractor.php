@@ -2,26 +2,41 @@
 
 namespace App\Models;
 
-use App\Models\ContractorSubType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ContractorType extends Model
+class Contractor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['contractor_type_name', 'initial','status'];
+    protected $fillable = [
+        'name',
+        'company_name',
+        'email',
+        'address',
+        'mobile_no',
+        'aadhaar_no',
+        'gst_no',
+        'vat_no',
+        'pan_no',
+        'bank_name',
+        'bank_branch',
+        'ifsc_code',
+        'bank_account_no',
+        'contractor_type_id',
+        'contractor_sub_type_id',
+        'status',
+        'bank_branch_name',
+    ];
+
+
 
 
     public function scopeActive($query)
     {
         return $query->where('status', 1);
-    }
-
-    public function contractor_sub_types(){
-        return $this->hasMany(ContractorSubType::class)->active();
     }
 
     public static function booted()

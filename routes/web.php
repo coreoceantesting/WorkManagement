@@ -52,8 +52,6 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('locations', App\Http\Controllers\Admin\Masters\LocationsController::class);
     Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentsController::class);
     Route::resource('designation', App\Http\Controllers\Admin\Masters\DesignationController::class);
-    Route::resource('contractor', App\Http\Controllers\Admin\Masters\ContractorController::class);
-    Route::resource('contractor_type', App\Http\Controllers\Admin\Masters\ContractorTypesController::class);
     Route::resource('contract_type', App\Http\Controllers\Admin\Masters\ContractTypesController::class);
     Route::resource('deposit_type', App\Http\Controllers\Admin\Masters\DepositTypesController::class);
     Route::resource('bank', App\Http\Controllers\Admin\Masters\BanksController::class);
@@ -87,13 +85,19 @@ Route::middleware(['guest', 'PreventBackHistory', 'firewall.all'])->group(functi
     Route::resource('work_types', App\Http\Controllers\Admin\Masters\WorkTypeController::class);
     Route::resource('project_phases', App\Http\Controllers\Admin\Masters\ProjectPhaseController::class);
     Route::resource('standard_schedule_rates', App\Http\Controllers\Admin\Masters\StandardScheduleRateController::class);
+    Route::resource('contractor_type', App\Http\Controllers\Admin\Masters\ContractorTypesController::class);
+    Route::get('contractor_types/{contractorType}/contractor_sub_types', [App\Http\Controllers\Admin\Masters\ContractorTypesController::class, 'subContractorType'])
+            ->name('contractor_types.contractor_sub_types');
     Route::resource('contractor_sub_types', App\Http\Controllers\Admin\Masters\ContractorSubTypeController::class);
     Route::resource('units', App\Http\Controllers\Admin\Masters\UnitController::class);
     Route::resource('items', App\Http\Controllers\Admin\Masters\ItemController::class);
     Route::resource('item_categories', App\Http\Controllers\Admin\Masters\ItemCategoryController::class);
     Route::get('item_categories/{itemCategory}/sub_categories', [App\Http\Controllers\Admin\Masters\ItemCategoryController::class, 'subCategories'])
-    ->name('item_categories.sub_categories');
+          ->name('item_categories.sub_categories');
     Route::resource('item_sub_categories', App\Http\Controllers\Admin\Masters\ItemSubCategoryController::class);
+    Route::resource('contractors', App\Http\Controllers\Admin\Masters\ContractorController::class);
+
+
 
 
 

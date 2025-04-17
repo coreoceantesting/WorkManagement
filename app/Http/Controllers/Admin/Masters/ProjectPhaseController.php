@@ -11,6 +11,11 @@ use App\Http\Requests\Admin\Masters\ProjectPhase\UpdateProjectPhaseRequest;
 
 class ProjectPhaseController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */

@@ -11,6 +11,12 @@ use App\Http\Requests\Admin\Masters\ItemCategory\UpdateItemCategoryRequest;
 
 class ItemCategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
+
     /**
      * Display a listing of the resource.
      */

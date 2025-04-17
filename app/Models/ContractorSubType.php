@@ -21,6 +21,11 @@ class ContractorSubType extends Model
         return $this->belongsTo(ContractorType::class, 'contractor_type_id', 'id');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public static function booted()
     {
         static::created(function (self $user)

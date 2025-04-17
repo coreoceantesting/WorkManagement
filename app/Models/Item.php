@@ -18,6 +18,7 @@ class Item extends Model
         'item_category_id',
         'item_sub_category_id',
         'rate',
+        'unit_id',
         'created_by',
         'updated_by',
         'deleted_by',

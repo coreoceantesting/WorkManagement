@@ -22,19 +22,33 @@ class StoreContractorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pannumber' => 'required',
-            'gstnumber' => 'required',
-            'epfnumber' => 'required',
-            'bank' => 'required',
-            'contactnumber' => 'required|digits:10',
-            'accountnumber' => 'required',
-            'accountname' => 'required',
-            'ifsccode' => 'required',
-            'address' => 'required',
-            'vendorname'=>'required',
-            'labourwelfarescheme' => 'required',
-            'ip_address' => 'nullable',
+                'name' => 'required',
+                'company_name' => 'required',
+                'email' => 'required',
+                'address' => 'required',
+                'mobile_no' => 'required|digits:10|numeric',
+                'aadhaar_no' => 'required|digits:12|numeric',
+                'gst_no' => 'required',
+                'vat_no' => 'nullable',
+                'pan_no' => 'required|alpha_num',
+                'bank_name' => 'required',
+                'ifsc_code' => 'required',
+                'bank_account_no' => 'required',
+                'bank_branch_name' => 'required',
+                'contractor_type_id' => 'required',
+                'contractor_sub_type_id' => 'required',
+                'status' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'contractor_type_id.required' => 'Please select a contractor type.',
+            'contractor_sub_type_id.required' => 'Please select a contractor sub type.',
+        ];
+    }
+
+
 }
 

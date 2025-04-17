@@ -15,23 +15,70 @@ use function Laravel\Prompts\select;
 
 class ContractorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:masters.all');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contractorsList = Contractor::latest()->get();
-        dd( $contractorsList);
-        return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList]);
-        // $contractorsList = Contractor::join('contractor_types', 'contractors.contractor_type', '=', 'contractor_types.id')
-        // ->select('contractors.*', 'contractor_types.contractor_type_name')
-        // ->whereNull('contractors.deleted_by')
-        // ->orderBy('contractors.id', 'desc')
-        // ->get();
-        // $contractorTypeList = ContractorType::latest()->get();
+        if ($request->ajax()) {
+            $contractors = Contractor::latest();
 
-        // return view('admin.masters.contractors')->with(['contractorsList'=> $contractorsList, 'contractorTypeList' => $contractorTypeList]);
+            // Optional: add search if DataTables sends it
+            if ($request->has('search') && $request->search['value']) {
+                $search = $request->search['value'];
+                $contractors = $contractors->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('company_name', 'like', "%{$search}%")
+                          ->orWhere('email', 'like', "%{$search}%");
+                });
+            }
+
+            $total = $contractors->count();
+
+            // Sorting
+            $columns = ['id', 'name', 'company_name', 'email', 'status'];
+            $columnIndex = $request->input('order.0.column', 0); // fallback to first column
+            $columnName = $columns[$columnIndex];
+            $sortDirection = $request->input('order.0.dir', 'desc');
+
+            $contractors = $contractors
+                ->orderBy($columnName, $sortDirection)
+                ->skip($request->start)
+                ->take($request->length)
+                ->get();
+
+            $data = [];
+            foreach ($contractors as $index => $contractor) {
+                $data[] = [
+                    'DT_RowIndex' => $request->start + $index + 1,
+                    'name' => $contractor->name,
+                    'company_name' => $contractor->company_name,
+                    'email' => $contractor->email,
+                    'status' => $contractor->status ? 'Active' : 'Inactive',
+                    'action' => '<button class="edit-element btn text-secondary px-2 py-1" title="Edit Contractor" data-id="' . $contractor->id . '"><i data-feather="edit"></i></button>',
+                ];
+            }
+
+            return response()->json([
+                'draw' => intval($request->draw),
+                'recordsTotal' => $total,
+                'recordsFiltered' => $total,
+                'data' => $data,
+            ]);
+        }
+
+        // If it's not AJAX, return the view
+        $contractorCategorys = ContractorType::latest()->active()->get();
+
+        return view('admin.masters.contractor.contractors')->with([
+            'contractorCategorys' => $contractorCategorys
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
