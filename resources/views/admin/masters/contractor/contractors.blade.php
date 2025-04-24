@@ -74,7 +74,7 @@
                                         <th>Name</th>
                                         <th>Company Name</th>
                                         <th>Email</th>
-                                        <th>Bank Account No</th>
+
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -108,7 +108,6 @@ $('#datatable').DataTable({
             { data: 'name', name: 'name' },
             { data: 'company_name', name: 'company_name' },
             { data: 'email', name: 'email' },
-            { data: 'bank_account_no', name: 'bank_account_no' },
             { data: 'status', name: 'status' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ],
