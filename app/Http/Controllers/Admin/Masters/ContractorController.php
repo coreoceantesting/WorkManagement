@@ -59,6 +59,7 @@ class ContractorController extends Controller
                     'company_name' => $contractor->company_name,
                     'email' => $contractor->email,
                     'status' => $contractor->status ? 'Active' : 'Inactive',
+                    'bank_account_no' => $contractor->bank_account_no,
                     'action' => '<button class="edit-element btn text-secondary px-2 py-1" title="Edit Contractor" data-id="' . $contractor->id . '"><i data-feather="edit"></i></button>',
                 ];
             }

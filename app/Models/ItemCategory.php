@@ -19,7 +19,10 @@ class ItemCategory extends Model
         'updated_by',
         'deleted_by',
     ];
-
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
     public function sub_categories(){
         return $this->hasMany(ItemSubCategory::class)->active();
     }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin\Masters;
 
 use App\Models\Item;
+use App\Models\Unit;
+use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use App\Models\ItemSubCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\Masters\Item\StoreItemRequest;
 use App\Http\Requests\Admin\Masters\Item\UpdateItemRequest;
-use App\Models\Unit;
 
 class ItemController extends Controller
 {
@@ -64,11 +65,11 @@ class ItemController extends Controller
         }
 
 
-        $itemSubCategory = ItemSubCategory::latest()->active()->get();
+        $itemCategory = ItemCategory::latest()->active()->get();
         $units = Unit::latest()->active()->get();
         return view('admin.masters.items')->with([
             'units'=>$units,
-            'item_categories'=>$itemSubCategory
+            'item_categories'=>$itemCategory
         ]);
     }
 

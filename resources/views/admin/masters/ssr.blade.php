@@ -22,6 +22,16 @@
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid from_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid end_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Work Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
@@ -35,16 +45,7 @@
                                     </select>
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid from_date_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid end_date_err"></span>
-                                </div>
+
 
                             </div>
 
@@ -76,6 +77,16 @@
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid from_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid end_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
@@ -89,16 +100,7 @@
                                     </select>
                                     <span class="text-danger is-invalid status_err"></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="from_date">From Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="from_date" name="from_date" type="date" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid from_date_err"></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="end_date">End Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="end_date" name="end_date" type="date" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid end_date_err"></span>
-                                </div>
+
 
                             </div>
                         </div>

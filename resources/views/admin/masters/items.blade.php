@@ -22,11 +22,7 @@
 
                                     <span class="text-danger is-invalid description_err"></span>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
-                                </div>
+
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="initial">Rate (Rs) <span class="text-danger">*</span></label>
                                     <input class="form-control" id="rate" name="rate" type="number" placeholder="Enter rate">
@@ -64,6 +60,11 @@
                                     </select>
 
                                     <span class="text-danger is-invalid item_sub_category_id_err"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid initial_err"></span>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
@@ -108,11 +109,7 @@
 
                                     <span class="text-danger is-invalid description_err"></span>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
-                                </div>
+
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="initial">Rate (Rs) <span class="text-danger">*</span></label>
                                     <input class="form-control" id="rate" name="rate" type="number" placeholder="Enter rate">
@@ -149,6 +146,12 @@
                                     </select>
 
                                     <span class="text-danger is-invalid item_sub_category_id_err"></span>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid initial_err"></span>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>

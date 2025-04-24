@@ -55,7 +55,7 @@
     <!-- Mobile No -->
     <div class="col-md-4">
         <label class="col-form-label" for="mobile_no">Mobile No <span class="text-danger">*</span></label>
-        <input class="form-control" id="mobile_no" name="mobile_no" type="text" placeholder="Enter Mobile No">
+        <input class="form-control" id="mobile_no" name="mobile_no" type="text"  maxlength="10" placeholder="Enter Mobile No">
         <span class="text-danger is-invalid mobile_no_err"></span>
     </div>
 

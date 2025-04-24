@@ -22,11 +22,6 @@
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
-                                </div>
-                                <div class="col-md-3">
                                     <label class="col-form-label" for="item_category_id">Item Category <span class="text-danger">*</span></label>
 
                                     <select class="form-control select2" id="item_category_id" name="item_category_id">
@@ -38,6 +33,12 @@
 
                                     <span class="text-danger is-invalid item_category_id_err"></span>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid initial_err"></span>
+                                </div>
+
 
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
@@ -79,11 +80,6 @@
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Enter Item Sub Category Name">
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
-                                </div>
 
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="item_sub_categories">Item Category <span class="text-danger">*</span></label>
@@ -97,6 +93,13 @@
 
                                     <span class="text-danger is-invalid item_category_id_err"></span>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Scheme Initial">
+                                    <span class="text-danger is-invalid initial_err"></span>
+                                </div>
+
+
                                 <div class="col-md-3">
                                     <label class="col-form-label" for="status">Status<span class="text-danger">*</span></label>
                                     <select class="form-control"  name="status">
