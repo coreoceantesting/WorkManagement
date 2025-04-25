@@ -41,7 +41,7 @@ class ContractorController extends Controller
             $total = $contractors->count();
 
             // Sorting
-            $columns = ['id', 'name', 'company_name', 'email', 'status'];
+            $columns = ['id', 'unique_number','name', 'company_name', 'email', 'status'];
             $columnIndex = $request->input('order.0.column', 0); // fallback to first column
             $columnName = $columns[$columnIndex];
             $sortDirection = $request->input('order.0.dir', 'desc');
@@ -56,6 +56,7 @@ class ContractorController extends Controller
             foreach ($contractors as $index => $contractor) {
                 $data[] = [
                     'DT_RowIndex' => $request->start + $index + 1,
+                    'unique_number'=>$contractor->unique_number,
                     'name' => $contractor->name,
                     'company_name' => $contractor->company_name,
                     'email' => $contractor->email,
@@ -101,10 +102,10 @@ class ContractorController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
-            Contractor::create($input);
+            $contractor = Contractor::create($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Contractor created successfully!']);
+            return response()->json(['success'=> "Contractor created successfully! Contractor No is $contractor->unique_number"]);
         }
         catch(\Exception $e)
         {

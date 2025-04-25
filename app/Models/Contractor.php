@@ -12,6 +12,7 @@ class Contractor extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'unique_number',
         'name',
         'company_name',
         'email',
@@ -41,8 +42,25 @@ class Contractor extends Model
 
     public static function booted()
     {
+        static::creating(function (self $user) {
+            // Generate the contractor's unique number
+            $latestContractor = self::orderBy('id', 'desc')->first(); // Get the latest contractor
+            $sequenceNumber = 1;
+
+            // If there are contractors already, calculate the next sequence number
+            if ($latestContractor) {
+                $lastNumber = (int) substr($latestContractor->unique_number, 1); // Extract the numeric part
+                $sequenceNumber = $lastNumber + 1; // Increment by 1
+            }
+
+            // Generate the unique number with leading zeroes, ensuring a 5-digit format
+            $user->unique_number = 'C' . str_pad($sequenceNumber, 5, '0', STR_PAD_LEFT); // 'C00001', 'C00002', etc.
+        });
         static::created(function (self $user)
         {
+
+
+
             if(Auth::check())
             {
                 self::where('id', $user->id)->update([

@@ -72,6 +72,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Unique Number</th>
                                         <th>Name</th>
                                         <th>Company Name</th>
                                         <th>Email</th>
@@ -106,6 +107,7 @@ $('#datatable').DataTable({
         buttons: ["copy", "csv", "excel", "print", "pdf"],
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+            { data: 'unique_number', name: 'unique_number' },
             { data: 'name', name: 'name' },
             { data: 'company_name', name: 'company_name' },
             { data: 'email', name: 'email' },
@@ -117,6 +119,7 @@ $('#datatable').DataTable({
         }
     });
     $("#addForm").submit(function(e) {
+
         e.preventDefault();
         $("#addSubmit").prop('disabled', true);
 
@@ -133,7 +136,11 @@ $('#datatable').DataTable({
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('contractors.index') }}';
+                            $('#datatable').DataTable().draw();
+                            $('#addForm')[0].reset(); // Optional: clear form
+                            $('#addContainer').hide(); // Optional: hide form after submit
+                            $('#btnCancel').hide(); // Hide cancel button if visible
+                            resetErrors(); // Clear previous errors
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -193,10 +200,12 @@ $('#datatable').DataTable({
                     $("#editForm input[name='vat_no']").val(data.contractor.vat_no);
                     $("#editForm input[name='pan_no']").val(data.contractor.pan_no);
                     $("#editForm input[name='bank_account_no']").val(data.contractor.bank_account_no);
-                    $("#editForm input[name='bank_id']").val(data.contractor.bank_id).trigger('change');
+                    $("#editForm select[name='bank_id']").val(data.contractor.bank_id).trigger('change');
                     $("#editForm input[name='bank_branch_name']").val(data.contractor.bank_branch_name);
                     $("#editForm input[name='ifsc_code']").val(data.contractor.ifsc_code);
                     $("#editForm select[name='status']").val(data.contractor.status).trigger('change');
+
+                    $('#editForm #unique_number').val(data.contractor.unique_number);
 
                 }
 
@@ -237,7 +246,12 @@ $('#datatable').DataTable({
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('contractors.index') }}';
+                                $('#datatable').DataTable().draw();
+                                $('#editForm')[0].reset(); // Optional: clear form
+                                $('#editContainer').hide(); // Optional: hide form after submit
+                                $('#btnCancel').hide(); // Hide cancel button if visible
+                                $('#addToTable').show();
+                                resetErrors(); // Clear previous errors
                             });
                     else
                         swal("Error!", data.error2, "error");

@@ -1,3 +1,9 @@
+<div class="row">
+    <div class="col-md-2">
+        <label class="col-form-label" for="unique_number">Contractor No </label>
+        <input class="form-control" id="unique_number" type="text" readonly disabled>
+    </div>
+</div>
 <div class="mb-3 row">
 
     <!-- Vendor Name -->
