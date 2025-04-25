@@ -31,7 +31,7 @@ class StoreContractorRequest extends FormRequest
                 'gst_no' => 'required',
                 'vat_no' => 'nullable',
                 'pan_no' => 'required|alpha_num',
-                'bank_name' => 'required',
+                'bank_id' => 'required',
                 'ifsc_code' => 'required',
                 'bank_account_no' => 'required',
                 'bank_branch_name' => 'required',
@@ -46,6 +46,7 @@ class StoreContractorRequest extends FormRequest
         return [
             'contractor_type_id.required' => 'Please select a contractor type.',
             'contractor_sub_type_id.required' => 'Please select a contractor sub type.',
+            'bank_id.required' => 'Please select a bank name.'
         ];
     }
 

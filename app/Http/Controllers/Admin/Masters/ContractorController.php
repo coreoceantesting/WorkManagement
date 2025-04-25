@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Masters;
 use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\Masters\Contractor\StoreContractorRequest;
 use App\Http\Requests\Admin\Masters\Contractor\UpdateContractorRequest;
+use App\Models\Bank;
 use App\Models\Contractor;
 use App\Models\ContractorType;
 use Illuminate\Http\Request;
@@ -74,9 +75,11 @@ class ContractorController extends Controller
 
         // If it's not AJAX, return the view
         $contractorCategorys = ContractorType::latest()->active()->get();
+        $banks = Bank::latest()->get();
 
         return view('admin.masters.contractor.contractors')->with([
-            'contractorCategorys' => $contractorCategorys
+            'contractorCategorys' => $contractorCategorys,
+            'banks'=>$banks
         ]);
     }
 

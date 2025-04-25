@@ -21,7 +21,7 @@ class Contractor extends Model
         'gst_no',
         'vat_no',
         'pan_no',
-        'bank_name',
+        'bank_id',
         'bank_branch',
         'ifsc_code',
         'bank_account_no',

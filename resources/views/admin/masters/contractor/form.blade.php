@@ -97,15 +97,20 @@
     <!-- Bank Name -->
     <div class="col-md-4">
         <label class="col-form-label" for="bank_name">Bank Name <span class="text-danger">*</span></label>
-        <input class="form-control" id="bank_name" name="bank_name" type="text" placeholder="Enter Bank Name">
-        <span class="text-danger is-invalid bank_name_err"></span>
+        <select class="form-control select2" id="bank_id_{{$mode}}" name="bank_id">
+            <option value="" disabled selected>Select Bank Name</option>
+            @foreach ($banks as $bank )
+                <option value="{{$bank->id}}">{{$bank->bank_name}}</option>
+            @endforeach
+        </select>
+        <span class="text-danger is-invalid bank_id_err"></span>
     </div>
 
   <!-- Bank Branch Name -->
     <div class="col-md-4">
         <label class="col-form-label" for="bank_branch_name">Bank Branch Name <span class="text-danger">*</span></label>
         <input class="form-control" id="bank_branch" name="bank_branch_name" type="text" placeholder="Enter Bank Branch Name">
-        <span class="text-danger is-invalid bank_branch_name"></span>
+        <span class="text-danger is-invalid bank_branch_name_err"></span>
     </div>
 
     <!-- IFSC Code -->

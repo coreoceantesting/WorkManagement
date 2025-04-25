@@ -15,7 +15,7 @@
                             <h4 class="card-title">Add Contractor</h4>
                         </div>
                         <div class="card-body">
-                            @include('admin.masters.contractor.form', ['contractorCategorys' => $contractorCategorys,'mode'=>''])
+                            @include('admin.masters.contractor.form', ['contractorCategorys' => $contractorCategorys,'mode'=>'','banks'=>$banks])
 
                         </div>
                         <div class="card-footer">
@@ -38,9 +38,10 @@
                         <div class="card-header">
                             <h4 class="card-title">Edit Contractor</h4>
                         </div>
+
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
-                            @include('admin.masters.contractor.form',['contractorCategorys' => $contractorCategorys,'mode'=>'edit'])
+                            @include('admin.masters.contractor.form',['contractorCategorys' => $contractorCategorys,'mode'=>'edit','banks'=>$banks])
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-primary" id="editSubmit">Update</button>
@@ -192,7 +193,7 @@ $('#datatable').DataTable({
                     $("#editForm input[name='vat_no']").val(data.contractor.vat_no);
                     $("#editForm input[name='pan_no']").val(data.contractor.pan_no);
                     $("#editForm input[name='bank_account_no']").val(data.contractor.bank_account_no);
-                    $("#editForm input[name='bank_name']").val(data.contractor.bank_name);
+                    $("#editForm input[name='bank_id']").val(data.contractor.bank_id).trigger('change');
                     $("#editForm input[name='bank_branch_name']").val(data.contractor.bank_branch_name);
                     $("#editForm input[name='ifsc_code']").val(data.contractor.ifsc_code);
                     $("#editForm select[name='status']").val(data.contractor.status).trigger('change');

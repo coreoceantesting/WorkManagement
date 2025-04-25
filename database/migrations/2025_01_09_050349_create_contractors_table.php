@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('gst_no',25)->nullable();
             $table->string('vat_no',25)->nullable();
             $table->string('pan_no',25)->nullable();
-            $table->string('bank_name',100)->nullable();
+            $table->foreignId('bank_id')->nullable()->constrained('banks')->nullOnDelete();
             $table->string('bank_branch_name',100)->nullable();
             $table->string('ifsc_code',50)->nullable();
             $table->string('bank_account_no',50)->nullable();

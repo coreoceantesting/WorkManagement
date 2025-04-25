@@ -75,7 +75,8 @@
                         'item_categories.index',
                         'item_sub_categories.index',
                         'items.index',
-                        'contractors.index'
+                        'contractors.index',
+                        'bank.index'
 
 
                     ];
@@ -97,6 +98,11 @@
 
 
                             <ul class="nav nav-sm flex-column">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('bank.index') }}" class="nav-link {{ request()->routeIs('bank.index') ? 'active' : '' }}" data-key="t-horizontal">Banks</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Departments</a>
                                 </li>
@@ -132,6 +138,8 @@
                                 <li class="nav-item">
                                     <a href="{{ route('contractors.index') }}" class="nav-link {{ request()->routeIs('contractors.index') ? 'active' : '' }}" data-key="t-horizontal">Contractors  </a>
                                 </li>
+
+
 
                             </ul>
                         </div>
